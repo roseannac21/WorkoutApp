@@ -1,10 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, ScrollView, Image, TextInput } from 'react-native';
-import SignUp from './sign-up';
-import { Link } from "react-router-native";
+import SignUp from './sign-up-button';
 
 
-const HomePage = () => {
+const WelcomePage = () => {
   return (
   <ScrollView contentContainerStyle={styles.container}>
   <View style={styles.container}>
@@ -12,7 +11,8 @@ const HomePage = () => {
       <Image source={{uri: 'https://www.boris-johnson.org.uk/sites/www.boris-johnson.org.uk/files/2020-08/The%20Gym%20Group.jpg' }}
       style={{width: 200, height:200}}></Image>
       <Text> Create an account below and begin your fitness journey...</Text>
-    
+      
+      <SignUp/>
       
       <StatusBar style="auto" />
     
@@ -31,4 +31,4 @@ const styles = StyleSheet.create({
   },
   
 });
-export default HomePage
+export default WelcomePage
