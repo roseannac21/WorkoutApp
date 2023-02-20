@@ -2,7 +2,10 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const Exercise = require("../schemas/ExerciseSchema");
 const User = require("../schemas/UserSchema");
-const exercises = require("./exercises-data");
+const Categories = require('../schemas/CategoriesSchema')
+const {exercises} = require("./exercises-data");
+// const {users} = require('./user-data')
+const {categories} = require('./categories-data')
 require("dotenv").config({
   path: `${__dirname}/../.env`,
 });
@@ -26,7 +29,7 @@ const user = new User({
   avatar_url: "...",
 });
 
-user.save(function (err, cb) {
+user.save(function (err, docs) {
   if (err) {
     console.log(err);
   } else {
@@ -34,10 +37,18 @@ user.save(function (err, cb) {
   }
 });
 
-Exercise.collection.insert(exercises, function (err, cb) {
+Exercise.insertMany(exercises, function (err, docs) {
   if (err) {
     console.log(err);
   } else {
     console.log("multiple exercises inserted into exercise collection");
+  }
+});
+
+Categories.insertMany(categories, function (err, docs) {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log("multiple categories inserted into category collection")
   }
 });

@@ -747,4 +747,60 @@ exports.exercises = [
     instructions:
       "With your right hand, grasp a single handle attached to the high-cable pulley using a supinated (underhand; palms facing up) grip. You should be standing directly in front of the weight stack. Now pull the handle down so that your upper arm and elbow are locked in to the side of your body. Your upper arm and forearm should form an acute angle (less than 90-degrees). You can keep the other arm by the waist and you can have one leg in front of you and the other one back for better balance. This will be your starting position. As you contract the triceps, move the single handle attachment down to your side until your arm is straight. Breathe out as you perform this movement. Tip: Only the forearms should move. Your upper arms should remain stationary at all times. Squeeze the triceps and hold for a second in this contracted position. Slowly return the handle to the starting position. Repeat for the recommended amount of repetitions and then perform the same movement with the other arm.  Variations: You can use exercise bands to perform this exercise.",
   },
+  {
+    name: "Treadmill",
+    type: "cardio",
+    muscle: "quadriceps",
+    equipment: "treadmill",
+    difficulty: "beginner",
+    instructions: "Start at an easy pace and increase the treadmill's speed to increase the intensity of your workout. You can also change the incline of the treadmill; a steeper incline will increase the intensity of your workout. Be care ful when stepping onto the machine. Make sure to use the safety clip."
+  },
+  {
+    name: "Exercise Bike",
+    type: "cardio",
+    muscle: "quadriceps",
+    equipment: "exercise bike",
+    difficulty: "beginner",
+    instructions: "Start at an easy pace and increase your speed to increase the intensity of your workout. You can also change the resistance of the bike; a higher resistance will increase the intensity of your workout. Be care ful when getting onto the machine."
+  },
+  {
+    name: "Cross Trainer",
+    type: "cardio",
+    muscle: "quadriceps",
+    equipment: "cross trainer",
+    difficulty: "beginner",
+    instructions: "Start at an easy pace and increase the cross trainer's speed to increase the intensity of your workout. You can also change the resistance of the cross trainer; a higher resistance will increase the intensity of your workout. Be care ful when stepping onto the machine."
+  },
+  {
+    name: "Standing Hamstring Stretch",
+    type: "stretching",
+    muscle: "hamstrings",
+    equipment: "body_only",
+    difficulty: "beginner",
+    instructions: "Stand tall with your feet hip-width apart, knees slightly bent, arms by your sides. Exhale as you bend forward at the hips, lowering your head toward the floor while keeping your head, neck, and shoulders relaxed. Wrap your arms around backs of your legs and hold anywhere from 45 seconds to 2 minutes. Bend your knees and roll up when you're done."
+  },
+  {
+    name: "Tricep Stretch",
+    type: "stretching",
+    muscle: "triceps",
+    equipment: "body_only",
+    difficulty: "beginner",
+    instructions: "The triceps stretch—one of the most popular upper-body stretches. It loosens up the muscles on the back of your upper arms, making it great to do after a chest or shoulders workout. Kneel, sit, or stand tall with feet hip-width apart, arms extended overhead. Bend your right elbow and reach your right hand to touch the top middle of your back. Reach your left hand overhead and grasp just below your right elbow. Gently pull your right elbow down and toward your head. Switch arms and repeat."
+  },
+  {
+    name: "Butterfly Stretch",
+    type: "stretching",
+    muscle: "glutes",
+    equipment: "body_only",
+    difficulty: "beginner",
+    instructions: "Sit tall on the floor with the soles of your feet together, knees bent out to sides. Hold onto your ankles or feet, engage your abs, and slowly lower your body toward your feet as far as you can while pressing your knees toward the floor. If you're too tight to bend over, simply press your knees down. Hold this stretch for 30 seconds to 2 minutes."
+  },
+  {
+    name: "Lunging Hip Flexor",
+    type: "stretching",
+    muscle: "quadriceps",
+    equipment: "body_only",
+    difficulty: "beginner",
+    instructions: "Kneel on your left knee. Place your right foot flat on the floor in front of you, knee bent. Lean forward, stretching your left hip toward the floor. Squeeze your butt; this will allow you to stretch your hip flexor even more. Hold for 30 seconds to 2 minutes. Switch sides and repeat."
+  }
 ];
