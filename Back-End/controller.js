@@ -1,6 +1,6 @@
-const Exercise = require('./schemas/ExerciseSchema');
-const { User } = require('./schemas/UserSchema');
-const Categories = require('./schemas/CategoriesSchema');
+const Exercise = require("./schemas/ExerciseSchema");
+const { User } = require("./schemas/UserSchema");
+const Categories = require("./schemas/CategoriesSchema");
 
 const getUsers = (req, res, next) => {
   return User.find()
@@ -26,4 +26,13 @@ const getCategories = (req, res, next) => {
     .catch(next);
 };
 
-module.exports = { getUsers, getExercises, getCategories };
+const getExerciseById = (req, res, next) => {
+  const { exercise_id } = req.params;
+  return Exercise.find({
+    _id: exercise_id,
+  }).then((result) => {
+    res.status(200).send({ exercise: result[0] });
+  });
+};
+
+module.exports = { getUsers, getExercises, getCategories, getExerciseById };
