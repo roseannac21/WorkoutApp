@@ -1,10 +1,10 @@
 const Exercise = require('./schemas/ExerciseSchema');
 const { User } = require('./schemas/UserSchema');
+const Categories = require('./schemas/CategoriesSchema');
 
 const getUsers = (req, res, next) => {
   return User.find()
     .then((result) => {
-      //console.log(result, "<-- Result")
       res.status(200).send({ users: result });
     })
     .catch(next);
@@ -18,4 +18,12 @@ const getExercises = (req, res, next) => {
     .catch(next);
 };
 
-module.exports = { getUsers, getExercises };
+const getCategories = (req, res, next) => {
+  return Categories.find()
+    .then((result) => {
+      res.status(200).send({ categories: result });
+    })
+    .catch(next);
+};
+
+module.exports = { getUsers, getExercises, getCategories };

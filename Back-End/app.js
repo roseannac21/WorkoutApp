@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const { getUsers, getExercises } = require('./controller');
+const { getUsers, getExercises, getCategories } = require('./controller');
 
 const app = express();
 
@@ -25,6 +25,7 @@ database.once('connected', () => {
 
 app.get('/api/users', getUsers);
 app.get('/api/exercises', getExercises);
+app.get('/api/categories', getCategories)
 
 app.use((err, req, res, next) => {
   if (err.status) {

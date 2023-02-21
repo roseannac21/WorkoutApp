@@ -3,8 +3,10 @@ const { app } = require('../app');
 const mongoose = require('mongoose');
 const Exercise = require('../schemas/ExerciseSchema');
 const { User } = require('../schemas/UserSchema');
+const Categories = require('../schemas/CategoriesSchema');
 const { exercises } = require('../data/exercises-data');
 const { users } = require('../data/user-data');
+const { categories } = require('../data/categories-data');
 
 require('dotenv').config({
   path: `${__dirname}/.env`,
@@ -22,6 +24,8 @@ beforeEach(async () => {
   await User.insertMany(users);
   await Exercise.deleteMany();
   await Exercise.insertMany(exercises);
+  await Categories.deleteMany();
+  await Categories.insertMany(categories);
 });
 
 afterAll(async () => {
@@ -42,8 +46,8 @@ describe('GET /api/users', () => {
           expect(user).toHaveProperty('__v', expect.any(Number));
         });
         expect(Array.isArray(users)).toBe(true);
-    });
-});
+      });
+  });
 });
 describe('GET /api/exercises', () => {
   test('should return exercises', () => {
@@ -61,7 +65,20 @@ describe('GET /api/exercises', () => {
           expect(exercise).toHaveProperty('instructions', expect.any(String));
           expect(exercise).toHaveProperty('__v', expect.any(Number));
         });
-        expect(Array.isArray(exercises)).toBe(true)
+        expect(Array.isArray(exercises)).toBe(true);
+      });
+  });
+});
+describe('GET /api/categories', () => {
+  test('should return categories', () => {
+    return request(app)
+      .get('/api/categories')
+      .expect(200)
+      .then(({ body: { categories } }) => {
+        categories.forEach((category) => {
+          expect(category).toHaveProperty('category', expect.any(String));
+          expect(category).toHaveProperty('_id', expect.any(String));
+        });
       });
   });
 });
