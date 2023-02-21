@@ -7,17 +7,18 @@ const Categories = require('../schemas/CategoriesSchema');
 const { exercises } = require('../data/exercises-data');
 const { users } = require('../data/user-data');
 const { categories } = require('../data/categories-data');
+const database = require('../connection')
 
-require('dotenv').config({
-  path: `${__dirname}/.env`,
-});
+// require('dotenv').config({
+//   path: `${__dirname}/.env`,
+// });
 
-const url = process.env.DATABASE_URL;
+// const url = process.env.DATABASE_URL;
 
-console.log(url);
+// console.log(url);
 
-mongoose.connect(url);
-const database = mongoose.connection;
+// mongoose.connect(url);
+// const database = mongoose.connection;
 
 beforeEach(async () => {
   await User.deleteMany();
@@ -29,7 +30,7 @@ beforeEach(async () => {
 });
 
 afterAll(async () => {
-  await mongoose.connection.close();
+  await database.close();
 });
 
 describe('GET /api/users', () => {
