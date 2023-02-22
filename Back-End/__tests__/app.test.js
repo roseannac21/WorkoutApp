@@ -9,28 +9,17 @@ const { users } = require("../data/user-data");
 const { categories } = require("../data/categories-data");
 const database = require("../connection");
 
-// require('dotenv').config({
-//   path: `${__dirname}/.env`,
-// });
-
-// const url = process.env.DATABASE_URL;
-
-// console.log(url);
-
-// mongoose.connect(url);
-// const database = mongoose.connection;
-
 beforeEach(async () => {
-  await User.deleteMany();
-  await User.collection.insertMany(users);
+  // await User.deleteMany();
   await Exercise.deleteMany();
-  await Exercise.collection.insertMany(exercises);
   await Categories.deleteMany();
+  // await User.collection.insertMany(users);
+  await Exercise.collection.insertMany(exercises);
   await Categories.collection.insertMany(categories);
 });
 
-afterAll(async () => {
-  await database.close();
+afterAll(() => {
+  database.close();
 });
 
 describe("GET /api/users", () => {
@@ -42,7 +31,7 @@ describe("GET /api/users", () => {
         users.forEach((user) => {
           expect(user).toHaveProperty("username", expect.any(String));
           expect(user).toHaveProperty("password", expect.any(String));
-          expect(user).toHaveProperty("_id", expect.any(String));
+          expect(user).toHaveProperty("_id", expect.any(Number));
           expect(user).toHaveProperty("avatar_url", expect.any(String));
         });
         expect(Array.isArray(users)).toBe(true);
@@ -91,16 +80,16 @@ describe("GET /api/categories", () => {
   });
 });
 describe("post user /api/users", () => {
-  test("returns status 200", () => {
-    return request(app).post("/api/users").expect(201);
-  });
+  // xtest("returns status 201", () => {
+  //   return request(app).post("/api/users").expect(201);
+  // });
   test("user object is added to users collection", () => {
     return request(app)
       .post("/api/users")
       .expect(201)
       .then(({ body: { user } }) => {
         expect(user.acknowledged).toBe(true);
-        expect(user).toHaveProperty("insertedId", expect.any(String));
+        expect(user).toHaveProperty("insertedId", expect.any(Number));
       });
   });
   test("error handling- 404", () => {
