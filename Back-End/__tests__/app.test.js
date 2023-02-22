@@ -4,21 +4,10 @@ const mongoose = require("mongoose");
 const Exercise = require("../schemas/ExerciseSchema");
 const { User } = require("../schemas/UserSchema");
 const Categories = require("../schemas/CategoriesSchema");
-const { exercises } = require("../data/exercises-data");
-const { users } = require("../data/user-data");
-const { categories } = require("../data/categories-data");
-const database = require("../connection");;
-
-// require('dotenv').config({
-//   path: `${__dirname}/.env`,
-// });
-
-// const url = process.env.DATABASE_URL;
-
-// console.log(url);
-
-// mongoose.connect(url);
-// const database = mongoose.connection;
+const { exercises } = require("../data/test-data/test-exercises-data");
+const { users } = require("../data/test-data/test-user-data");
+const { categories } = require("../data/test-data/test-categories-data");
+const database = require("../connection");
 
 beforeEach(async () => {
   await User.deleteMany();
@@ -92,71 +81,71 @@ describe("get exercise by ID", () => {
       .then(({ body: { exercise } }) => {
         expect(exercise).toEqual({
           _id: 3,
-          name: "Hammer Curls",
+          name: "Landmine twist",
           type: "strength",
-          muscle: "biceps",
-          equipment: "dumbbell",
+          muscle: "abdominals",
+          equipment: "other",
           difficulty: "intermediate",
           instructions:
-            "Stand up with your torso upright and a dumbbell on each hand being held at arms length. The elbows should be close to the torso. The palms of the hands should be facing your torso. This will be your starting position. Now, while holding your upper arm stationary, exhale and curl the weight forward while contracting the biceps. Continue to raise the weight until the biceps are fully contracted and the dumbbell is at shoulder level. Hold the contracted position for a brief moment as you squeeze the biceps. Tip: Focus on keeping the elbow stationary and only moving your forearm. After the brief pause, inhale and slowly begin the lower the dumbbells back down to the starting position. Repeat for the recommended amount of repetitions.  Variations: There are many possible variations for this movement. For instance, you can perform the exercise sitting down on a bench with or without back support and you can also perform it by alternating arms; first lift the right arm for one repetition, then the left, then the right, etc.",
+            "Position a bar into a landmine or securely anchor it in a corner. Load the bar to an appropriate weight. Raise the bar from the floor, taking it to shoulder height with both hands with your arms extended in front of you. Adopt a wide stance. This will be your starting position. Perform the movement by rotating the trunk and hips as you swing the weight all the way down to one side. Keep your arms extended throughout the exercise. Reverse the motion to swing the weight all the way to the opposite side. Continue alternating the movement until the set is complete.",
         });
       });
   });
-  test('400: bad request, invalid id type', () => {
+  test("400: bad request, invalid id type", () => {
     return request(app)
-      .get('/api/exercises/notAnId')
+      .get("/api/exercises/notAnId")
       .expect(400)
       .then(({ body }) => {
-        expect(body.msg).toBe('Bad request: invalid _id type');
+        expect(body.msg).toBe("Bad request: invalid _id type");
       });
   });
-  test('404: nonexistent id', () => {
+  test("404: nonexistent id", () => {
     return request(app)
-      .get('/api/exercises/2000')
+      .get("/api/exercises/2000")
       .expect(404)
       .then(({ body }) => {
-        expect(body.msg).toBe('Not Found');
+        expect(body.msg).toBe("Not Found");
       });
   });
 });
-describe('GET /api/users/:_id', () => {
-  test('should return user object', () => {
+describe("GET /api/users/:_id", () => {
+  test("should return user object", () => {
     return request(app)
-      .get('/api/users/1')
+      .get("/api/users/1")
       .expect(200)
       .then(({ body: { user } }) => {
-        expect(user).toHaveProperty('username', expect.any(String));
-        expect(user).toHaveProperty('password', expect.any(String));
-        expect(user).toHaveProperty('avatar_url', expect.any(String));
+        expect(user).toHaveProperty("username", expect.any(String));
+        expect(user).toHaveProperty("password", expect.any(String));
+        expect(user).toHaveProperty("avatar_url", expect.any(String));
       });
   });
-  test('should return correct user', () => {
+  test("should return correct user", () => {
     return request(app)
-      .get('/api/users/1')
+      .get("/api/users/1")
       .expect(200)
       .then(({ body: { user } }) => {
         expect(user).toEqual({
           _id: 1,
-          username: 'user1',
-          password: 'PassWord!',
-          avatar_url: '...',
+          username: "testuser1",
+          password: "testPassWord!",
+          avatar_url: "...",
         });
       });
   });
-  test('400: bad request, invalid id type', () => {
+  test("400: bad request, invalid id type", () => {
     return request(app)
-      .get('/api/users/notAnId')
+      .get("/api/users/notAnId")
       .expect(400)
       .then(({ body }) => {
-        expect(body.msg).toBe('Bad request: invalid _id type');
+        expect(body.msg).toBe("Bad request: invalid _id type");
       });
   });
-  test('404: nonexistent id', () => {
+  test("404: nonexistent id", () => {
     return request(app)
-      .get('/api/users/2000')
+      .get("/api/users/2000")
       .expect(404)
       .then(({ body }) => {
-        expect(body.msg).toBe('Not Found');
+        expect(body.msg).toBe("Not Found");
       });
   });
 });
