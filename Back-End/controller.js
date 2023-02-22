@@ -1,7 +1,7 @@
-const Exercise = require("./schemas/ExerciseSchema");
-const { User } = require("./schemas/UserSchema");
-const Categories = require("./schemas/CategoriesSchema");
-const { ObjectId } = require("mongodb");
+const Exercise = require('./schemas/ExerciseSchema');
+const { User } = require('./schemas/UserSchema');
+const Categories = require('./schemas/CategoriesSchema');
+const { ObjectId } = require('mongodb');
 
 const getUsers = (req, res, next) => {
   return User.find()
@@ -27,19 +27,21 @@ const getCategories = (req, res, next) => {
     .catch(next);
 };
 
-const getUserById = (req, res, next) => {
+const getUserById = async (req, res, next) => {
   const { _id } = req.params;
-  if (typeof _id != "number") {
-    return User.find({ _id: _id })
+  console.log(req.params, '<-- req.params');
+  if (_id.match(/[0-9]/g)) {
+    return await User.find({ _id: _id })
+      // This will return only username & will remove id from visablilty to user "-_id username"
       .then((result) => {
+        console.log(result, '<-- result');
         res.status(200).send({ user: result[0] });
-      })
-      .catch(next);
+      });
   } else
     return Promise.reject({
       status: 400,
-      msg: "Bad request: invalid _id type",
-    });
+      msg: 'Bad request: invalid _id type',
+    }).catch(next);
 };
 
 module.exports = { getUsers, getExercises, getCategories, getUserById };

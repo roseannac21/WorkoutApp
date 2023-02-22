@@ -57,7 +57,7 @@ app.use((err, req, res, next) => {
 
 app.use((err, req, res, next) => {
   console.log(err);
-  if (err.code === "ERR_ASSERTION") {
+  if (err.code === "ERR_ASSERTION" && req.params === {}) {
     res.status(400).send({ msg: "Bad request: invalid _id type" });
   } else {
     next(err);
