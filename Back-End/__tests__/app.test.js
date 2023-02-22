@@ -7,7 +7,7 @@ const Categories = require('../schemas/CategoriesSchema');
 const { exercises } = require('../data/exercises-data');
 const { users } = require('../data/user-data');
 const { categories } = require('../data/categories-data');
-const database = require('../connection')
+const database = require('../connection');
 
 // require('dotenv').config({
 //   path: `${__dirname}/.env`,
@@ -42,7 +42,7 @@ describe('GET /api/users', () => {
         users.forEach((user) => {
           expect(user).toHaveProperty('username', expect.any(String));
           expect(user).toHaveProperty('password', expect.any(String));
-          expect(user).toHaveProperty('_id', expect.any(String));
+          expect(user).toHaveProperty('_id', expect.any(Number));
           expect(user).toHaveProperty('avatar_url', expect.any(String));
           expect(user).toHaveProperty('__v', expect.any(Number));
         });
@@ -80,6 +80,47 @@ describe('GET /api/categories', () => {
           expect(category).toHaveProperty('category', expect.any(String));
           expect(category).toHaveProperty('_id', expect.any(String));
         });
+      });
+  });
+});
+describe('GET /api/users/:_id', () => {
+  test('should return user object', () => {
+    return request(app)
+      .get('/api/users/1')
+      .expect(200)
+      .then(({ body: { user } }) => {
+        console.log(user);
+        expect(user).toHaveProperty('username', expect.any(String));
+        expect(user).toHaveProperty('password', expect.any(String));
+        expect(user).toHaveProperty('avatar_url', expect.any(String));
+      });
+  });
+  test('should return correct user', () => {
+    return request(app)
+      .get('/api/users/1')
+      .expect(200)
+      .then(({ body: { user } }) => {
+        expect(user).toEqual({
+          username: 'user1',
+          password: 'PassWord!',
+          avatar_url: '...',
+        });
+      });
+  });
+  test('400: bad request, invalid id type', () => {
+    return request(app)
+      .get('/api/users/notAnId')
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe('Bad request: invalid _id type');
+      });
+  });
+  test('404: nonexistent id', () => {
+    return request(app)
+      .get('/api/users/2000')
+      .expect(404)
+      .then(({ body }) => {
+        expect(body.msg).toBe('Not Found');
       });
   });
 });
