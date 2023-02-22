@@ -27,10 +27,10 @@ const getCategories = (req, res, next) => {
     .catch(next);
 };
 
-const getUserById = async (req, res, next) => {
+const getUserById = (req, res, next) => {
   const { _id } = req.params;
   if (_id.match(/[0-9]/g)) {
-    return await User.find({ _id: _id }, "-_id username password avatar_url")
+    return User.find({ _id: _id }, "-_id username password avatar_url")
       // This will return only username & will remove id from visablilty to user "-_id username"
       .then((result) => {
         if(result.length === 0) {
