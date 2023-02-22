@@ -34,7 +34,9 @@ const getUserById = async (req, res, next) => {
     return await User.find({ _id: _id })
       // This will return only username & will remove id from visablilty to user "-_id username"
       .then((result) => {
-        console.log(result, '<-- result');
+        if(result.length === 0) {
+          res.status(404).send({msg: "Not Found"})
+        } else
         res.status(200).send({ user: result[0] });
       });
   } else
