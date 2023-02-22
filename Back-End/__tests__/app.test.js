@@ -90,7 +90,6 @@ describe('GET /api/users/:_id', () => {
       .expect(200)
       .then(({ body: { user } }) => {
         console.log(user);
-        expect(user).toHaveProperty('_id', expect.any(Number));
         expect(user).toHaveProperty('username', expect.any(String));
         expect(user).toHaveProperty('password', expect.any(String));
         expect(user).toHaveProperty('avatar_url', expect.any(String));
@@ -102,11 +101,9 @@ describe('GET /api/users/:_id', () => {
       .expect(200)
       .then(({ body: { user } }) => {
         expect(user).toEqual({
-          _id: 1,
           username: 'user1',
           password: 'PassWord!',
           avatar_url: '...',
-          __v: 0,
         });
       });
   });
