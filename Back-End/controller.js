@@ -30,14 +30,15 @@ const getCategories = (req, res, next) => {
 const getUserById = (req, res, next) => {
   const { _id } = req.params;
   if (_id.match(/[0-9]/g)) {
-    return User.find({ _id: _id }, "-_id username password avatar_url")
-      // This will return only username & will remove id from visablilty to user "-_id username"
-      .then((result) => {
-        if(result.length === 0) {
-          res.status(404).send({msg: "Not Found"})
-        } else
-        res.status(200).send({ user: result[0] });
-      });
+    return (
+      User.find({ _id: _id })
+        // This will return only username & will remove id from visablilty to user "-_id username"
+        .then((result) => {
+          if (result.length === 0) {
+            res.status(404).send({ msg: 'Not Found' });
+          } else res.status(200).send({ user: result[0] });
+        })
+    );
   } else
     return Promise.reject({
       status: 400,
@@ -45,4 +46,25 @@ const getUserById = (req, res, next) => {
     }).catch(next);
 };
 
-module.exports = { getUsers, getExercises, getCategories, getUserById };
+const getExerciseById = (req, res, next) => {
+  const { _id } = req.params;
+  if (_id.match(/[0-9]/g)) {
+    return Exercise.find({ _id: _id }).then((result) => {
+      if (result.length === 0) {
+        res.status(404).send({ msg: 'Not Found' });
+      } else res.status(200).send({ exercise: result[0] });
+    });
+  } else
+    return Promise.reject({
+      status: 400,
+      msg: 'Bad request: invalid _id type',
+    }).catch(next);
+};
+
+module.exports = {
+  getUsers,
+  getExercises,
+  getCategories,
+  getExerciseById,
+  getUserById,
+};
