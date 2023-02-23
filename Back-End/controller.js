@@ -45,15 +45,6 @@ const getUserById = (req, res, next) => {
           res.status(404).send({ msg: "Not Found" });
         } else res.status(200).send({ user: correctUser[0] });
       });
-    return (
-      User.find({ _id: _id })
-        // This will return only username & will remove id from visablilty to user "-_id username"
-        .then((result) => {
-          if (result.length === 0) {
-            res.status(404).send({ msg: "Not Found" });
-          } else res.status(200).send({ user: result[0] });
-        })
-    );
   } else
     return Promise.reject({
       status: 400,
@@ -76,7 +67,6 @@ const getExerciseById = (req, res, next) => {
     }).catch(next);
 };
 
-
 const deleteUserById = (req, res, next) => {
   const _id = req.params.user_id;
   if (_id.match(/[0-9]/g)) {
@@ -90,6 +80,7 @@ const deleteUserById = (req, res, next) => {
   } else {
     res.status(400).send({ msg: "Invalid ID type" });
   }
+};
 
 const postUser = (req, res, next) => {
   const newUser = new User({
@@ -113,5 +104,6 @@ module.exports = {
   getCategories,
   getUserById,
   getExerciseById,
+  deleteUserById,
   postUser,
 };
