@@ -1,6 +1,7 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
+const AutoIncrementFactory = require("mongoose-sequence");
 
-require('dotenv').config({
+require("dotenv").config({
   path: `${__dirname}/.env`,
 });
 
@@ -10,5 +11,6 @@ console.log(url);
 
 mongoose.connect(url);
 const database = mongoose.connection;
+const AutoIncrement = AutoIncrementFactory(database);
 
-module.exports = database
+module.exports = { database, AutoIncrement };
