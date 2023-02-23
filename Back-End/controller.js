@@ -104,6 +104,7 @@ module.exports = {
   getCategories,
   getUserById,
   getExerciseById,
+  deleteUserById,
   postUser,
   deleteUserById,
 };

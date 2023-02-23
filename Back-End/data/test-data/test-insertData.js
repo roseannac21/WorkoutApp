@@ -7,7 +7,7 @@ const { exercises } = require("./test-exercises-data");
 
 const { categories } = require("./categories-data");
 require("dotenv").config({
-  path: `${__dirname}/../.env`,
+  path: `${__dirname}/../.env.test`,
 });
 
 const url = process.env.DATABASE_URL;
