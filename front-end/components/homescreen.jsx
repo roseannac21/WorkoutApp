@@ -5,9 +5,10 @@ import {
   ScrollView,
   Image,
   TextInput,
+  TouchableOpacity,
 } from 'react-native';
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
   return (
     <SafeAreaView
       style={{
@@ -35,16 +36,21 @@ const HomeScreen = () => {
           >
             Hello User
           </Text>
-          <Image
-            source={{
-              uri: 'https://www.boris-johnson.org.uk/sites/www.boris-johnson.org.uk/files/2020-08/The%20Gym%20Group.jpg',
+          <TouchableOpacity
+            onPress={() => {navigation.navigate('User');
             }}
-            style={{
-              width: 35,
-              height: 35,
-              borderRadius: 25,
-            }}
-          />
+          >
+            <Image
+              source={{
+                uri: 'https://www.boris-johnson.org.uk/sites/www.boris-johnson.org.uk/files/2020-08/The%20Gym%20Group.jpg',
+              }}
+              style={{
+                width: 35,
+                height: 35,
+                borderRadius: 25,
+              }}
+            />
+          </TouchableOpacity>
         </View>
 
         <View
