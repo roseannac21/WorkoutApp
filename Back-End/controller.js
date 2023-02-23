@@ -12,7 +12,31 @@ const getUsers = (req, res, next) => {
 };
 
 const getExercises = (req, res, next) => {
-  return Exercise.find()
+  if (req.query.muscle === undefined) {
+    return Exercise.find().then((result) => {
+      res.status(200).send({ exercises: result });
+    });
+  } else if (
+    ![
+      "biceps",
+      "triceps",
+      "abdominals",
+      "hamstrings",
+      "glutes",
+      "quadriceps",
+      "lower_back",
+      "middle_back",
+      "chest",
+      "traps",
+      "calves",
+    ].includes(req.query.muscle)
+  ) {
+    return res
+      .status(400)
+      .send({ msg: "this muscle does not exist on the database" });
+  }
+  const query = req.query.muscle;
+  return Exercise.find({ muscle: query })
     .then((result) => {
       res.status(200).send({ exercises: result });
     })

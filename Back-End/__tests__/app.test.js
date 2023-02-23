@@ -244,3 +244,47 @@ describe("patch user", () => {
     return request(app).patch("/api/users/hello").send(userToPatch).expect(400);
   });
 });
+describe("filter exercises by musclegroup- queries", () => {
+  test("status 200 and exercises are filtered by given muscle group", () => {
+    return request(app)
+      .get("/api/exercises?muscle=biceps")
+      .expect(200)
+      .then(({ body: { exercises } }) => {
+        exercises.forEach((exercise) => {
+          expect(exercise).toHaveProperty("_id", expect.any(Number));
+          expect(exercise).toHaveProperty("name", expect.any(String));
+          expect(exercise).toHaveProperty("type", expect.any(String));
+          expect(exercise).toHaveProperty("muscle", expect.any(String));
+          expect(exercise).toHaveProperty("equipment", expect.any(String));
+          expect(exercise).toHaveProperty("difficulty", expect.any(String));
+          expect(exercise).toHaveProperty("instructions", expect.any(String));
+        });
+        expect(Array.isArray(exercises)).toBe(true);
+      });
+  });
+  test("testing another muscle group", () => {
+    return request(app)
+      .get("/api/exercises?muscle=quadriceps")
+      .expect(200)
+      .then(({ body: { exercises } }) => {
+        exercises.forEach((exercise) => {
+          expect(exercise).toHaveProperty("_id", expect.any(Number));
+          expect(exercise).toHaveProperty("name", expect.any(String));
+          expect(exercise).toHaveProperty("type", expect.any(String));
+          expect(exercise).toHaveProperty("muscle", expect.any(String));
+          expect(exercise).toHaveProperty("equipment", expect.any(String));
+          expect(exercise).toHaveProperty("difficulty", expect.any(String));
+          expect(exercise).toHaveProperty("instructions", expect.any(String));
+        });
+        expect(Array.isArray(exercises)).toBe(true);
+      });
+  });
+  test("400 error", () => {
+    return request(app)
+      .get("/api/exercises?muscle=hello")
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe("this muscle does not exist on the database");
+      });
+  });
+});
