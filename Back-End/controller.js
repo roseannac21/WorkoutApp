@@ -1,7 +1,7 @@
 const Exercise = require("./schemas/ExerciseSchema");
 const User = require("./schemas/UserSchema");
 const Categories = require("./schemas/CategoriesSchema");
-const { ObjectId } = require("mongodb");
+// const { ObjectId } = require("mongodb");
 
 const getUsers = (req, res, next) => {
   return User.find()
@@ -106,4 +106,5 @@ module.exports = {
   getExerciseById,
   deleteUserById,
   postUser,
+  deleteUserById,
 };

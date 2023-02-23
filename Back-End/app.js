@@ -13,7 +13,7 @@ const {
 const app = express();
 
 require("dotenv").config({
-  path: `${__dirname}/.env`,
+  path: `${__dirname}/.env.test`,
 });
 
 const url = process.env.DATABASE_URL;
