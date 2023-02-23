@@ -30,13 +30,15 @@ const HomeScreen = () => {
           <Text
             style={{
               fontSize: 18,
-              fontWeight: 'bold'
+              fontWeight: 'bold',
             }}
           >
             Hello User
           </Text>
           <Image
-            source={{ uri: 'link to avatar' }}
+            source={{
+              uri: 'https://www.boris-johnson.org.uk/sites/www.boris-johnson.org.uk/files/2020-08/The%20Gym%20Group.jpg',
+            }}
             style={{
               width: 35,
               height: 35,
