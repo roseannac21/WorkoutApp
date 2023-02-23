@@ -147,7 +147,7 @@ const Login = ({navigation}) => {
               color: '#fff',
             }}
           >
-            Sign In
+            Sign Up
           </Text>
         </TouchableOpacity>
       </ScrollView>
