@@ -4,7 +4,6 @@ const {
   getUsers,
   getExercises,
   getCategories,
-  getExerciseById,
   getUserById,
   getExerciseById,
   postUser,

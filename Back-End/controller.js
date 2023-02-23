@@ -93,11 +93,6 @@ const postUser = (req, res, next) => {
     .catch(next);
 };
 
-
-      msg: 'Bad request: invalid _id type',
-    }).catch(next);
-};
-
 module.exports = {
   getUsers,
   getExercises,

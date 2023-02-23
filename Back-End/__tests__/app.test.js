@@ -80,34 +80,21 @@ describe("GET /api/users/:_id", () => {
     .get("/api/users/0")
       .expect(200)
       .then(({ body: { user } }) => {
-        console.log(user);
-
-      .get("/api/users/1")
-      .expect(200)
-      .then(({ body: { user } }) => {
-
         expect(user).toHaveProperty("username", expect.any(String));
         expect(user).toHaveProperty("password", expect.any(String));
         expect(user).toHaveProperty("avatar_url", expect.any(String));
       });
   });
-  test("should return correct user", () => {
+  test('should return correct user', () => {
     return request(app)
-
-      .get("/api/users/0")
+      .get('/api/users/0')
       .expect(200)
       .then(({ body: { user } }) => {
         expect(user).toEqual({
           _id: 0,
-
-      .get("/api/users/1")
-      .expect(200)
-      .then(({ body: { user } }) => {
-        expect(user).toEqual({
-          _id: 1,
-          username: "testuser1",
-          password: "testPassWord!",
-          avatar_url: "...",
+          username: 'testuser1',
+          password: 'testPassWord!',
+          avatar_url: '...',
         });
       });
   });
@@ -127,7 +114,7 @@ describe("GET /api/users/:_id", () => {
         expect(body.msg).toBe("Not Found");
       });
   });
-});
+  })
 
 describe("get exercise by ID", () => {
   test("status 200", () => {
