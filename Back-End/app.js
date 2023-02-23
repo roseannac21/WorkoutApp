@@ -8,6 +8,7 @@ const {
   deleteUserById,
   getExerciseById,
   postUser,
+  patchUser,
 } = require("./controller");
 
 const app = express();
@@ -38,6 +39,7 @@ app.delete("/api/users/:user_id", deleteUserById);
 
 app.use(express.json());
 app.post("/api/users", postUser);
+app.patch("/api/users/:_id", patchUser);
 
 app.use((err, req, res, next) => {
   if (err.status) {

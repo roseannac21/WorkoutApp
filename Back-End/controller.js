@@ -98,6 +98,17 @@ const postUser = (req, res, next) => {
     .catch(next);
 };
 
+const patchUser = (req, res, next) => {
+  const userId = req.params._id;
+  return User.findOneAndUpdate(
+    { _id: userId },
+    { avatar_url: req.body.avatar_url },
+    { new: true }
+  ).then((result) => {
+    res.status(200).send({ updated: result });
+  });
+};
+
 module.exports = {
   getUsers,
   getExercises,
@@ -107,4 +118,5 @@ module.exports = {
   deleteUserById,
   postUser,
   deleteUserById,
+  patchUser,
 };

@@ -198,3 +198,19 @@ describe("delete user by id", () => {
       });
   });
 });
+describe("patch user", () => {
+  test("status 200 and user info is successfully updated", () => {
+    const userToPatch = {
+      username: "testuser1",
+      password: "testPassWord!",
+      avatar_url: "newAvatar",
+    };
+    return request(app)
+      .patch("/api/users/0")
+      .send(userToPatch)
+      .expect(200)
+      .then(({ body }) => {
+        console.log(body);
+      });
+  });
+});
