@@ -158,16 +158,15 @@ describe("delete user by id", () => {
       .delete("/api/users/99999")
       .expect(404)
       .then(({ body }) => {
-        console.log(body);
-        // expect(body.msg).toBe("Not Found");
+        expect(body.msg).toBe("Not Found");
       });
   });
-  xtest("400 error: invalid user ID - string", () => {
+  test("400 error: invalid user ID - string", () => {
     return request(app)
       .delete("/api/users/hello")
       .expect(400)
       .then(({ body }) => {
-        expect(body.msg).toBe("Bad Request");
+        expect(body.msg).toBe("Invalid ID type");
       });
   });
 });

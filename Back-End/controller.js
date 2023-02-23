@@ -65,8 +65,14 @@ const deleteUserById = (req, res, next) => {
   const _id = req.params.user_id;
   if (_id.match(/[0-9]/g)) {
     return User.deleteOne({ _id: _id }).then((result) => {
-      res.status(204).send();
+      if (result.deletedCount === 0) {
+        res.status(404).send({ msg: "Not Found" });
+      } else {
+        res.status(204).send();
+      }
     });
+  } else {
+    res.status(400).send({ msg: "Invalid ID type" });
   }
 };
 
