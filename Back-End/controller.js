@@ -50,7 +50,7 @@ const getUserById = (req, res, next) => {
         // This will return only username & will remove id from visablilty to user "-_id username"
         .then((result) => {
           if (result.length === 0) {
-            res.status(404).send({ msg: 'Not Found' });
+            res.status(404).send({ msg: "Not Found" });
           } else res.status(200).send({ user: result[0] });
         })
     );
@@ -67,7 +67,6 @@ const getExerciseById = (req, res, next) => {
     return Exercise.find({ _id: _id }).then((result) => {
       if (result.length === 0) {
         res.status(404).send({ msg: "Not Found" });
-
       } else res.status(200).send({ exercise: result[0] });
     });
   } else
@@ -76,6 +75,21 @@ const getExerciseById = (req, res, next) => {
       msg: "Bad request: invalid _id type",
     }).catch(next);
 };
+
+
+const deleteUserById = (req, res, next) => {
+  const _id = req.params.user_id;
+  if (_id.match(/[0-9]/g)) {
+    return User.deleteOne({ _id: _id }).then((result) => {
+      if (result.deletedCount === 0) {
+        res.status(404).send({ msg: "Not Found" });
+      } else {
+        res.status(204).send();
+      }
+    });
+  } else {
+    res.status(400).send({ msg: "Invalid ID type" });
+  }
 
 const postUser = (req, res, next) => {
   const newUser = new User({

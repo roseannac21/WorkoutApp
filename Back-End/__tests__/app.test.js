@@ -178,3 +178,24 @@ describe("post user /api/users", () => {
       });
   });
 });
+describe("delete user by id", () => {
+  test("deletes user with given id", () => {
+    return request(app).delete("/api/users/1").expect(204);
+  });
+  test("404 error: non existant ID", () => {
+    return request(app)
+      .delete("/api/users/99999")
+      .expect(404)
+      .then(({ body }) => {
+        expect(body.msg).toBe("Not Found");
+      });
+  });
+  test("400 error: invalid user ID - string", () => {
+    return request(app)
+      .delete("/api/users/hello")
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe("Invalid ID type");
+      });
+  });
+});
