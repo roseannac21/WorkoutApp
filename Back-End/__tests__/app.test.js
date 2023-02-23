@@ -69,15 +69,14 @@ describe("GET /api/categories", () => {
         categories.forEach((category) => {
           expect(category).toHaveProperty("category", expect.any(String));
           expect(category).toHaveProperty("_id", expect.any(String));
-
         });
       });
   });
 });
 describe("GET /api/users/:_id", () => {
   test("should return user object", () => {
-    return request(app)      
-    .get("/api/users/0")
+    return request(app)
+      .get("/api/users/0")
       .expect(200)
       .then(({ body: { user } }) => {
         expect(user).toHaveProperty("username", expect.any(String));
@@ -85,16 +84,16 @@ describe("GET /api/users/:_id", () => {
         expect(user).toHaveProperty("avatar_url", expect.any(String));
       });
   });
-  test('should return correct user', () => {
+  test("should return correct user", () => {
     return request(app)
-      .get('/api/users/0')
+      .get("/api/users/0")
       .expect(200)
       .then(({ body: { user } }) => {
         expect(user).toEqual({
           _id: 0,
-          username: 'testuser1',
-          password: 'testPassWord!',
-          avatar_url: '...',
+          username: "testuser1",
+          password: "testPassWord!",
+          avatar_url: "...",
         });
       });
   });
@@ -114,7 +113,7 @@ describe("GET /api/users/:_id", () => {
         expect(body.msg).toBe("Not Found");
       });
   });
-  })
+});
 
 describe("get exercise by ID", () => {
   test("status 200", () => {
@@ -180,7 +179,7 @@ describe("post user /api/users", () => {
 });
 describe("delete user by id", () => {
   test("deletes user with given id", () => {
-    return request(app).delete("/api/users/1").expect(204);
+    return request(app).delete("/api/users/0").expect(204);
   });
   test("404 error: non existant ID", () => {
     return request(app)
