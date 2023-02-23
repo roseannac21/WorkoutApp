@@ -6,6 +6,7 @@ const {
   getCategories,
   getExerciseById,
   getUserById,
+  deleteUserById,
 } = require("./controller");
 
 const app = express();
@@ -30,8 +31,9 @@ database.once("connected", () => {
 app.get("/api/users", getUsers);
 app.get("/api/exercises", getExercises);
 app.get("/api/categories", getCategories);
-app.get("/api/users/:_id", getUserById)
+app.get("/api/users/:_id", getUserById);
 app.get("/api/exercises/:_id", getExerciseById);
+app.delete("/api/users/:user_id", deleteUserById);
 
 app.use((err, req, res, next) => {
   if (err.status) {
@@ -66,11 +68,12 @@ app.use((err, req, res, next) => {
 });
 
 app.use((err, req, res, next) => {
-  res.status(500).send({ msg: 'Internal Server Error' });
+  console.log(err);
+  res.status(500).send({ msg: "Internal Server Error" });
 });
 
 app.listen(3000, () => {
-  console.log('listening');
+  console.log("listening");
 });
 
 module.exports = { app, mongoose };

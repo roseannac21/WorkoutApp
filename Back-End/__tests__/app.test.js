@@ -149,3 +149,8 @@ describe("GET /api/users/:_id", () => {
       });
   });
 });
+// describe("delete user by id", () => {
+//   test("deletes user with given id", () => {
+//     return request(app).delete("/api/users/1").expect(204);
+//   });
+// });
