@@ -100,12 +100,19 @@ const postUser = (req, res, next) => {
 
 const patchUser = (req, res, next) => {
   const userId = req.params._id;
+  if (isNaN(parseInt(userId)) === true) {
+    return res.status(400).send({ msg: "Invalid ID type" });
+  }
   return User.findOneAndUpdate(
     { _id: userId },
     { avatar_url: req.body.avatar_url },
     { new: true }
   ).then((result) => {
-    res.status(200).send({ updated: result });
+    if (result === null) {
+      res.status(404).send({ msg: "User ID doesn't exist" });
+    } else {
+      res.status(200).send({ updated: result });
+    }
   });
 };
 
