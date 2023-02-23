@@ -9,10 +9,12 @@ const { exercises } = require("../data/test-data/test-exercises-data");
 const { users } = require("../data/test-data/test-user-data");
 const { categories } = require("../data/test-data/test-categories-data");
 const { database } = require("../connection");
+const url = process.env.DATABASE_URL;
 
 beforeEach(async () => {
+  await mongoose.connect(url);
   await User.deleteMany();
-  await User.collection.insert(users);
+  await User.collection.insertMany(users);
   await Exercise.deleteMany();
   await Exercise.collection.insertMany(exercises);
   await Categories.deleteMany();
@@ -24,6 +26,7 @@ beforeEach(async () => {
 afterAll(async () => {
   await database.close();
 });
+jest.setTimeout(15000);
 
 describe("GET /api/users", () => {
   test("should return all users", () => {
