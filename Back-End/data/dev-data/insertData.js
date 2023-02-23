@@ -4,8 +4,8 @@ const Exercise = require("../../schemas/ExerciseSchema");
 const User = require("../../schemas/UserSchema");
 const Categories = require("../../schemas/CategoriesSchema");
 const { exercises } = require("./exercises-data");
-
 const { categories } = require("./categories-data");
+
 require("dotenv").config({
   path: `${__dirname}/../.env`,
 });
