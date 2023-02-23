@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import WelcomePage from './components/welcome-page';
 import Login from './components/login';
+import SignUp from './components/signup';
 import HomeScreen from './components/homescreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -14,6 +15,7 @@ export default function App() {
         <Stack.Screen component={WelcomePage} name="Welcome" options={{headerShown: false}}/>
         <Stack.Screen component={Login} name="LogIn" />
         <Stack.Screen component={HomeScreen} name="Homescreen" />
+        <Stack.Screen component={SignUp} name="SignUp" />
       </Stack.Navigator>
     </NavigationContainer>
   );

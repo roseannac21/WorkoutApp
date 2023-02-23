@@ -8,7 +8,7 @@ import {
   Image,
 } from 'react-native';
 
-const Login = ({navigation}) => {
+const SignUp = ({ navigation }) => {
   return (
     <SafeAreaView
       style={{
@@ -29,7 +29,7 @@ const Login = ({navigation}) => {
         >
           <Image
             source={{
-              uri: 'https://c4.wallpaperflare.com/wallpaper/695/308/1005/d-grass-paw-caine-wallpaper-preview.jpg',
+              uri: 'https://media.istockphoto.com/id/670051268/photo/people-at-the-gym-talking-to-the-receptionist.jpg?s=612x612&w=0&k=20&c=aD_wBFo5gWOdUhjvZo4mLXFde3__6e8S0lkMqdTKFOg=',
             }}
             style={{
               width: 375,
@@ -51,7 +51,7 @@ const Login = ({navigation}) => {
               paddingVertical: 20,
             }}
           >
-            Log In
+            Sign Up
           </Text>
         </View>
 
@@ -113,7 +113,7 @@ const Login = ({navigation}) => {
               color: '#fff',
             }}
           >
-            Sign In
+            Sign Up
           </Text>
         </TouchableOpacity>
         <View>
@@ -125,12 +125,12 @@ const Login = ({navigation}) => {
               marginBottom: 40,
             }}
           >
-            New here? Register below
+            Already have an account? Sign in below
           </Text>
         </View>
 
         <TouchableOpacity
-          onPress={() => {navigation.navigate('SignUp')}}
+          onPress={() => {}}
           style={{
             backgroundColor: '#87CEEB',
             padding: 20,
@@ -147,7 +147,7 @@ const Login = ({navigation}) => {
               color: '#fff',
             }}
           >
-            Sign In
+            Log in
           </Text>
         </TouchableOpacity>
       </ScrollView>
@@ -155,4 +155,4 @@ const Login = ({navigation}) => {
   );
 };
 
-export default Login;
+export default SignUp;
