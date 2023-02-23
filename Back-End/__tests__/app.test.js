@@ -288,3 +288,33 @@ describe("filter exercises by musclegroup- queries", () => {
       });
   });
 });
+describe("filter exercises by difficulty- queries", () => {
+  test("200, and exercises are filtered by given difficulty", () => {
+    return request(app)
+      .get("/api/exercises?difficulty=beginner")
+      .expect(200)
+      .then(({ body: { exercises } }) => {
+        exercises.forEach((exercise) => {
+          expect(exercise).toHaveProperty("_id", expect.any(Number));
+          expect(exercise).toHaveProperty("name", expect.any(String));
+          expect(exercise).toHaveProperty("type", expect.any(String));
+          expect(exercise).toHaveProperty("muscle", expect.any(String));
+          expect(exercise).toHaveProperty("equipment", expect.any(String));
+          expect(exercise).toHaveProperty("difficulty", expect.any(String));
+          expect(exercise).toHaveProperty("instructions", expect.any(String));
+        });
+        expect(Array.isArray(exercises)).toBe(true);
+        expect(exercises).toHaveLength(10);
+      });
+  });
+  test("400 error", () => {
+    return request(app)
+      .get("/api/exercises?difficulty=hello")
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe(
+          "this difficulty level does not exist on the database"
+        );
+      });
+  });
+});
