@@ -201,3 +201,46 @@ describe("delete user by id", () => {
       });
   });
 });
+describe("patch user", () => {
+  test("status 200 and user info is successfully updated", () => {
+    const userToPatch = {
+      username: "testuser1",
+      password: "testPassWord!",
+      avatar_url: "newAvatar",
+    };
+    return request(app)
+      .patch("/api/users/0")
+      .send(userToPatch)
+      .expect(200)
+      .then(({ body: { updated } }) => {
+        expect(updated).toEqual({
+          _id: 0,
+          username: "testuser1",
+          password: "testPassWord!",
+          avatar_url: "newAvatar",
+        });
+      });
+  });
+  test("status 404 error", () => {
+    const userToPatch = {
+      username: "testuser1",
+      password: "testPassWord!",
+      avatar_url: "testToFail",
+    };
+    return request(app)
+      .patch("/api/users/999")
+      .send(userToPatch)
+      .expect(404)
+      .then(({ body }) => {
+        expect(body.msg).toBe("User ID doesn't exist");
+      });
+  });
+  test("status 400 error", () => {
+    const userToPatch = {
+      username: "testuser1",
+      password: "testPassWord!",
+      avatar_url: "testToFail",
+    };
+    return request(app).patch("/api/users/hello").send(userToPatch).expect(400);
+  });
+});
