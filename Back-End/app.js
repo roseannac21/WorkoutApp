@@ -5,6 +5,8 @@ const {
   getExercises,
   getCategories,
   getUserById,
+  getExerciseById,
+  postUser,
 } = require("./controller");
 
 const app = express();
@@ -30,6 +32,10 @@ app.get("/api/users", getUsers);
 app.get("/api/exercises", getExercises);
 app.get("/api/categories", getCategories);
 app.get("/api/users/:_id", getUserById);
+app.get("/api/exercises/:_id", getExerciseById);
+
+app.use(express.json());
+app.post("/api/users", postUser);
 
 app.use((err, req, res, next) => {
   if (err.status) {

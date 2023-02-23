@@ -6,6 +6,7 @@ const ExerciseSchema = new mongoose.Schema({
   equipment: { type: String, required: true },
   difficulty: { type: String, required: true },
   instructions: { type: String, required: true },
+  _id: { type: Number, required: true },
 });
 
 const Exercise = mongoose.model("Exercise", ExerciseSchema, "exercises");
