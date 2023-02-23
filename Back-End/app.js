@@ -4,6 +4,7 @@ const {
   getUsers,
   getExercises,
   getCategories,
+  getExerciseById,
   getUserById,
   getExerciseById,
   postUser,
@@ -62,20 +63,19 @@ app.use((err, req, res, next) => {
 });
 
 app.use((err, req, res, next) => {
-  console.log(err);
-  if (err.code === "ERR_ASSERTION" && req.params === {}) {
-    res.status(400).send({ msg: "Bad request: invalid _id type" });
+  if (err.code === "23502") {
+    res.status(400).send({ msg: "Invalid Patch Request" });
   } else {
     next(err);
   }
 });
 
 app.use((err, req, res, next) => {
-  res.status(500).send({ msg: "Internal Server Error" });
+  res.status(500).send({ msg: 'Internal Server Error' });
 });
 
 app.listen(3000, () => {
-  console.log("listening");
+  console.log('listening');
 });
 
 module.exports = { app, mongoose };

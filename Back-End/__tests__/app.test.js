@@ -17,6 +17,7 @@ beforeEach(async () => {
   await Exercise.collection.insertMany(exercises);
   await Categories.deleteMany();
   await Categories.collection.insertMany(categories);
+
   await Counters.deleteMany();
 });
 
@@ -68,17 +69,23 @@ describe("GET /api/categories", () => {
         categories.forEach((category) => {
           expect(category).toHaveProperty("category", expect.any(String));
           expect(category).toHaveProperty("_id", expect.any(String));
+
         });
       });
   });
 });
 describe("GET /api/users/:_id", () => {
   test("should return user object", () => {
-    return request(app)
-      .get("/api/users/0")
+    return request(app)      
+    .get("/api/users/0")
       .expect(200)
       .then(({ body: { user } }) => {
         console.log(user);
+
+      .get("/api/users/1")
+      .expect(200)
+      .then(({ body: { user } }) => {
+
         expect(user).toHaveProperty("username", expect.any(String));
         expect(user).toHaveProperty("password", expect.any(String));
         expect(user).toHaveProperty("avatar_url", expect.any(String));
@@ -86,11 +93,18 @@ describe("GET /api/users/:_id", () => {
   });
   test("should return correct user", () => {
     return request(app)
+
       .get("/api/users/0")
       .expect(200)
       .then(({ body: { user } }) => {
         expect(user).toEqual({
           _id: 0,
+
+      .get("/api/users/1")
+      .expect(200)
+      .then(({ body: { user } }) => {
+        expect(user).toEqual({
+          _id: 1,
           username: "testuser1",
           password: "testPassWord!",
           avatar_url: "...",

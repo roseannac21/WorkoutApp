@@ -6,5 +6,6 @@ exports.users = [
     password: "testPassWord!",
     avatar_url: "...",
     _id: 0,
+
   },
 ];

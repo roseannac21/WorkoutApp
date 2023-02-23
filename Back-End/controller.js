@@ -45,6 +45,15 @@ const getUserById = (req, res, next) => {
           res.status(404).send({ msg: "Not Found" });
         } else res.status(200).send({ user: correctUser[0] });
       });
+    return (
+      User.find({ _id: _id })
+        // This will return only username & will remove id from visablilty to user "-_id username"
+        .then((result) => {
+          if (result.length === 0) {
+            res.status(404).send({ msg: 'Not Found' });
+          } else res.status(200).send({ user: result[0] });
+        })
+    );
   } else
     return Promise.reject({
       status: 400,
@@ -58,6 +67,7 @@ const getExerciseById = (req, res, next) => {
     return Exercise.find({ _id: _id }).then((result) => {
       if (result.length === 0) {
         res.status(404).send({ msg: "Not Found" });
+
       } else res.status(200).send({ exercise: result[0] });
     });
   } else
@@ -81,6 +91,11 @@ const postUser = (req, res, next) => {
       });
     })
     .catch(next);
+};
+
+
+      msg: 'Bad request: invalid _id type',
+    }).catch(next);
 };
 
 module.exports = {
