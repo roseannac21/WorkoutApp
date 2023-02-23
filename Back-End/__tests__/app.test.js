@@ -2,20 +2,23 @@ const request = require("supertest");
 const { app } = require("../app");
 const mongoose = require("mongoose");
 const Exercise = require("../schemas/ExerciseSchema");
-const { User } = require("../schemas/UserSchema");
+const User = require("../schemas/UserSchema");
 const Categories = require("../schemas/CategoriesSchema");
+const Counters = require("../schemas/CountersSchema");
 const { exercises } = require("../data/test-data/test-exercises-data");
 const { users } = require("../data/test-data/test-user-data");
 const { categories } = require("../data/test-data/test-categories-data");
-const database = require("../connection");
+const { database } = require("../connection");
 
 beforeEach(async () => {
   await User.deleteMany();
-  await User.collection.insertMany(users);
+  await User.collection.insert(users);
   await Exercise.deleteMany();
   await Exercise.collection.insertMany(exercises);
   await Categories.deleteMany();
   await Categories.collection.insertMany(categories);
+
+  await Counters.deleteMany();
 });
 
 afterAll(async () => {
@@ -66,10 +69,53 @@ describe("GET /api/categories", () => {
         categories.forEach((category) => {
           expect(category).toHaveProperty("category", expect.any(String));
           expect(category).toHaveProperty("_id", expect.any(String));
+
         });
       });
   });
 });
+describe("GET /api/users/:_id", () => {
+  test("should return user object", () => {
+    return request(app)      
+    .get("/api/users/0")
+      .expect(200)
+      .then(({ body: { user } }) => {
+        expect(user).toHaveProperty("username", expect.any(String));
+        expect(user).toHaveProperty("password", expect.any(String));
+        expect(user).toHaveProperty("avatar_url", expect.any(String));
+      });
+  });
+  test('should return correct user', () => {
+    return request(app)
+      .get('/api/users/0')
+      .expect(200)
+      .then(({ body: { user } }) => {
+        expect(user).toEqual({
+          _id: 0,
+          username: 'testuser1',
+          password: 'testPassWord!',
+          avatar_url: '...',
+        });
+      });
+  });
+  test("400: bad request, invalid id type", () => {
+    return request(app)
+      .get("/api/users/notAnId")
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe("Bad request: invalid _id type");
+      });
+  });
+  test("404: nonexistent id", () => {
+    return request(app)
+      .get("/api/users/2000")
+      .expect(404)
+      .then(({ body }) => {
+        expect(body.msg).toBe("Not Found");
+      });
+  });
+  })
+
 describe("get exercise by ID", () => {
   test("status 200", () => {
     return request(app).get("/api/exercises/1").expect(200);
@@ -108,44 +154,27 @@ describe("get exercise by ID", () => {
       });
   });
 });
-describe("GET /api/users/:_id", () => {
-  test("should return user object", () => {
+
+describe("post user /api/users", () => {
+  test("returns correct posted user", () => {
+    const newUser = {
+      username: "user2",
+      password: "helloWorld",
+      avatar_url: "....",
+    };
+
     return request(app)
-      .get("/api/users/1")
-      .expect(200)
-      .then(({ body: { user } }) => {
-        expect(user).toHaveProperty("username", expect.any(String));
-        expect(user).toHaveProperty("password", expect.any(String));
-        expect(user).toHaveProperty("avatar_url", expect.any(String));
-      });
-  });
-  test("should return correct user", () => {
-    return request(app)
-      .get("/api/users/1")
-      .expect(200)
-      .then(({ body: { user } }) => {
-        expect(user).toEqual({
+      .post("/api/users")
+      .send(newUser)
+      .expect(201)
+      .then(({ body: { userAdded } }) => {
+        expect(userAdded).toEqual({
+          username: "user2",
+          password: "helloWorld",
+          avatar_url: "....",
           _id: 1,
-          username: "testuser1",
-          password: "testPassWord!",
-          avatar_url: "...",
+          __v: 0,
         });
-      });
-  });
-  test("400: bad request, invalid id type", () => {
-    return request(app)
-      .get("/api/users/notAnId")
-      .expect(400)
-      .then(({ body }) => {
-        expect(body.msg).toBe("Bad request: invalid _id type");
-      });
-  });
-  test("404: nonexistent id", () => {
-    return request(app)
-      .get("/api/users/2000")
-      .expect(404)
-      .then(({ body }) => {
-        expect(body.msg).toBe("Not Found");
       });
   });
 });

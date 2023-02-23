@@ -4,9 +4,10 @@ const {
   getUsers,
   getExercises,
   getCategories,
-  getExerciseById,
   getUserById,
   deleteUserById,
+  getExerciseById,
+  postUser,
 } = require("./controller");
 
 const app = express();
@@ -34,6 +35,9 @@ app.get("/api/categories", getCategories);
 app.get("/api/users/:_id", getUserById);
 app.get("/api/exercises/:_id", getExerciseById);
 app.delete("/api/users/:user_id", deleteUserById);
+
+app.use(express.json());
+app.post("/api/users", postUser);
 
 app.use((err, req, res, next) => {
   if (err.status) {
