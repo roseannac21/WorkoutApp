@@ -30,7 +30,8 @@ beforeEach(async () => {
 afterAll(async () => {
   await database.close();
 });
-jest.setTimeout(15000);
+
+// jest.setTimeout(15000);
 
 describe("GET /api/users", () => {
   test("should return all users", () => {
@@ -351,18 +352,18 @@ describe("get workouts", () => {
     return request(app)
       .get("/api/users/0/workouts")
       .expect(200)
-      .then(({ body: { workout } }) => {
-        expect(workout).toHaveProperty("name");
-        expect(workout).toHaveProperty("user_id");
-        expect(workout).toHaveProperty("workout");
+      .then(({ body: { workouts } }) => {
+        expect(workouts).toHaveProperty("name");
+        expect(workouts).toHaveProperty("user_id");
+        expect(workouts).toHaveProperty("workout");
       });
   });
   test("status 200, checking the workout object", () => {
     return request(app)
       .get("/api/users/0/workouts")
       .expect(200)
-      .then(({ body: { workout } }) => {
-        workout.workout.forEach((exercise) => {
+      .then(({ body: { workouts } }) => {
+        workouts.workout.forEach((exercise) => {
           expect(exercise).toHaveProperty("exercise");
         });
       });
@@ -371,8 +372,8 @@ describe("get workouts", () => {
     return request(app)
       .get("/api/users/0/workouts")
       .expect(200)
-      .then(({ body: { workout } }) => {
-        expect(workout.workout).toHaveLength(2);
+      .then(({ body: { workouts } }) => {
+        expect(workouts.workout).toHaveLength(2);
       });
   });
   test("404 error user not found", () => {
@@ -389,6 +390,61 @@ describe("get workouts", () => {
       .expect(400)
       .then(({ body }) => {
         expect(body.msg).toBe("Bad request: invalid _id type");
+      });
+  });
+});
+describe.only("post workout", () => {
+  test("status 201 and a new workout is posted to a user's id", () => {
+    const newWorkout = {
+      name: "new workout",
+      user_id: 0,
+      workout: [
+        {
+          exercise: "Incline Hammer Curls",
+          reps: 8,
+          weight: "10kg",
+          sets: 4,
+        },
+        {
+          exercise: "Treadmill",
+          duration: "15m",
+        },
+      ],
+    };
+    return request(app)
+      .post("/api/users/0/workouts")
+      .send(newWorkout)
+      .expect(201)
+      .then(({ body: { newWorkout } }) => {
+        expect(newWorkout).toHaveProperty("_id");
+        expect(newWorkout).toHaveProperty("name");
+        expect(newWorkout).toHaveProperty("user_id");
+        expect(newWorkout).toHaveProperty("workout");
+      });
+  });
+  test("404 error, user ID doesn't exist", () => {
+    const newWorkout = {
+      name: "new workout",
+      user_id: 9999,
+      workout: [
+        {
+          exercise: "Incline Hammer Curls",
+          reps: 8,
+          weight: "10kg",
+          sets: 4,
+        },
+        {
+          exercise: "Treadmill",
+          duration: "15m",
+        },
+      ],
+    };
+    return request(app)
+      .post("/api/users/9999/workouts")
+      .send(newWorkout)
+      .expect(404)
+      .then(({ body }) => {
+        expect(body.msg).toBe("Bad request: ID doesn't exist");
       });
   });
 });

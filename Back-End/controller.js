@@ -186,7 +186,7 @@ const getWorkouts = (req, res, next) => {
         if (response.length === 0) {
           return res.status(404).send({ msg: "Bad request: ID doesn't exist" });
         }
-        res.status(200).send({ workout: response[0] });
+        res.status(200).send({ workouts: response[0] });
       });
   } else
     return Promise.reject({
@@ -194,6 +194,39 @@ const getWorkouts = (req, res, next) => {
       msg: "Bad request: invalid _id type",
     }).catch(next);
 };
+
+const postWorkout = async (req, res, next) => {
+  const user_id = parseInt(req.params.user_id);
+  // if (isNaN(parseInt(user_id)) === false) {
+  // await User.find({ _id: user_id }).then((response) => {
+  //   if (response.length === 0) {
+  //     return res.status(404).send({ msg: "Bad request: ID doesn't exist" });
+  //   }
+  if (!isNaN(user_id)) {
+    console.log(user_id);
+    User.find({ _id: user_id }).then((response) => {
+      if (response.length === 0) {
+        return res.status(404).send({ msg: "Bad request: ID doesn't exist" });
+      }
+      console.log(response);
+    });
+    let { _id } = (await Workouts.findOne()
+      .sort({ _id: -1 })
+      .limit(1)
+      .select({ _id: 1 })) || { _id: 0 };
+    console.log(_id);
+    const newWorkout = new Workouts({
+      _id: _id + 1,
+      name: req.body.name,
+      user_id: req.body.user_id,
+      workout: req.body.workout,
+    });
+    newWorkout.save().then((result) => {
+      res.status(201).send({ newWorkout: result });
+    });
+  }
+};
+// };
 
 module.exports = {
   getUsers,
@@ -206,4 +239,5 @@ module.exports = {
   deleteUserById,
   patchUser,
   getWorkouts,
+  postWorkout,
 };

@@ -10,6 +10,7 @@ const {
   postUser,
   patchUser,
   getWorkouts,
+  postWorkout,
 } = require("./controller");
 
 const app = express();
@@ -42,6 +43,7 @@ app.get("/api/users/:_id/workouts", getWorkouts);
 app.use(express.json());
 app.post("/api/users", postUser);
 app.patch("/api/users/:_id", patchUser);
+app.post("/api/users/:user_id/workouts", postWorkout);
 
 app.use((err, req, res, next) => {
   if (err.status) {
