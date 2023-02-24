@@ -8,7 +8,7 @@ export const getUsers = () => {
     return workoutAPI
     .get(`/users`)
     .then(({data}) => {
-        return data.users[0]
+        return data.users
     })
 }
 
@@ -16,6 +16,6 @@ export const getUserById = (id) => {
     return workoutAPI
     .get(`/users/${id}`)
     .then(({data}) => {
-        return data.users
+        return data.user
     })
 }
