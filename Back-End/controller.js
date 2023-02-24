@@ -1,6 +1,7 @@
 const Exercise = require("./schemas/ExerciseSchema");
 const User = require("./schemas/UserSchema");
 const Categories = require("./schemas/CategoriesSchema");
+const Workouts = require("./schemas/WorkoutsSchema");
 // const { ObjectId } = require("mongodb");
 
 const getUsers = (req, res, next) => {
@@ -176,6 +177,24 @@ const patchUser = (req, res, next) => {
   });
 };
 
+const getWorkouts = (req, res, next) => {
+  const { _id } = req.params;
+  if (_id.match(/[0-9]/g)) {
+    return Workouts.find({ user_id: _id })
+      .populate({ path: "user_id", select: "_id username" })
+      .then((response) => {
+        if (response.length === 0) {
+          return res.status(404).send({ msg: "Bad request: ID doesn't exist" });
+        }
+        res.status(200).send({ workout: response[0] });
+      });
+  } else
+    return Promise.reject({
+      status: 400,
+      msg: "Bad request: invalid _id type",
+    }).catch(next);
+};
+
 module.exports = {
   getUsers,
   getExercises,
@@ -186,4 +205,5 @@ module.exports = {
   postUser,
   deleteUserById,
   patchUser,
+  getWorkouts,
 };

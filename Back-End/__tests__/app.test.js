@@ -5,10 +5,12 @@ const Exercise = require("../schemas/ExerciseSchema");
 const User = require("../schemas/UserSchema");
 const Categories = require("../schemas/CategoriesSchema");
 const Counters = require("../schemas/CountersSchema");
+const Workouts = require("../schemas/WorkoutsSchema");
 const { exercises } = require("../data/test-data/test-exercises-data");
 const { users } = require("../data/test-data/test-user-data");
 const { categories } = require("../data/test-data/test-categories-data");
 const { database } = require("../connection");
+const { workouts } = require("../data/test-data/test-workouts-data");
 const url = process.env.DATABASE_URL;
 
 beforeEach(async () => {
@@ -21,6 +23,8 @@ beforeEach(async () => {
   await Categories.collection.insertMany(categories);
 
   await Counters.deleteMany();
+  await Workouts.deleteMany();
+  await Workouts.collection.insert(workouts);
 });
 
 afterAll(async () => {
@@ -339,6 +343,52 @@ describe("category query", () => {
       .expect(400)
       .then(({ body }) => {
         expect(body.msg).toBe("this category does not exist on the database");
+      });
+  });
+});
+describe("get workouts", () => {
+  test("status 200 gets the workout", () => {
+    return request(app)
+      .get("/api/users/0/workouts")
+      .expect(200)
+      .then(({ body: { workout } }) => {
+        expect(workout).toHaveProperty("name");
+        expect(workout).toHaveProperty("user_id");
+        expect(workout).toHaveProperty("workout");
+      });
+  });
+  test("status 200, checking the workout object", () => {
+    return request(app)
+      .get("/api/users/0/workouts")
+      .expect(200)
+      .then(({ body: { workout } }) => {
+        workout.workout.forEach((exercise) => {
+          expect(exercise).toHaveProperty("exercise");
+        });
+      });
+  });
+  test("status 200 and check length of workout array", () => {
+    return request(app)
+      .get("/api/users/0/workouts")
+      .expect(200)
+      .then(({ body: { workout } }) => {
+        expect(workout.workout).toHaveLength(2);
+      });
+  });
+  test("404 error user not found", () => {
+    return request(app)
+      .get("/api/users/2000/workouts")
+      .expect(404)
+      .then(({ body }) => {
+        expect(body.msg).toBe("Bad request: ID doesn't exist");
+      });
+  });
+  test("400 error invalid user id type", () => {
+    return request(app)
+      .get("/api/users/hello/workouts")
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe("Bad request: invalid _id type");
       });
   });
 });
