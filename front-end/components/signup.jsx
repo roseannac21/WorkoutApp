@@ -95,6 +95,26 @@ const SignUp = ({ navigation }) => {
           />
         </View>
 
+        <View
+          style={{
+            flexDirection: 'row',
+            borderColor: '#C6C6C6',
+            borderWidth: 1,
+            paddingHorizontal: 10,
+            paddingVertical: 8,
+            margin: 10,
+          }}
+        >
+          <TextInput
+            placeholder="Avatar URL"
+            style={{
+              flex: 1,
+              paddingVertical: 0,
+            }}
+            keyboardType="default"
+          />
+        </View>
+
         <TouchableOpacity
           onPress={() => {}}
           style={{

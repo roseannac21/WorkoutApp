@@ -62,6 +62,7 @@ const Welcome = ({ navigation }) => {
         </Text>
       </TouchableOpacity>
       <TouchableOpacity
+      onPress={() => navigation.navigate('SignUp')}
         style={{
           backgroundColor: '#87CEEB',
           padding: 20,
