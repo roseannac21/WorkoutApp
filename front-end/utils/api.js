@@ -1,5 +1,5 @@
 import axios from "axios"
 
 const workoutAPI = axios.create({
-    baseURL: 'DATABASE LINK (or render hosting etc)'
-})
+  baseURL: 'https://workout-app-93fn.onrender.com/api',
+});
