@@ -2,6 +2,8 @@ const Exercise = require("./schemas/ExerciseSchema");
 const User = require("./schemas/UserSchema");
 const Categories = require("./schemas/CategoriesSchema");
 const Workouts = require("./schemas/WorkoutsSchema");
+const { app } = require("./app");
+const { workouts } = require("./data/test-data/test-workouts-data");
 // const { ObjectId } = require("mongodb");
 
 const getUsers = (req, res, next) => {
@@ -186,13 +188,52 @@ const getWorkouts = (req, res, next) => {
         if (response.length === 0) {
           return res.status(404).send({ msg: "Bad request: ID doesn't exist" });
         }
-        res.status(200).send({ workout: response[0] });
+        res.status(200).send({ workouts: response[0] });
       });
   } else
     return Promise.reject({
       status: 400,
       msg: "Bad request: invalid _id type",
     }).catch(next);
+};
+
+const getWorkoutById = (req, res, next) => {
+  const { user_id, workout_id } = req.params;
+  if (user_id.match(/[0-9]/g) && workout_id.match(/[0-9]/g)) {
+    return Workouts.find({ user_id: user_id })
+      .populate({ path: "user_id", select: "_id username" })
+      .then((workoutsRes) => {
+        if (workoutsRes.length === 0) {
+          return res
+            .status(404)
+            .send({ msg: "Bad request: user ID doesn't exist" });
+        } else {
+          const correctWorkout = workoutsRes.filter((singleWorkout) => {
+            return singleWorkout._id == workout_id;
+          });
+          return correctWorkout;
+        }
+      })
+      .then((result) => {
+        if (result.length === 0) {
+          return res
+            .status(404)
+            .send({ msg: "Bad request: workout ID doesn't exist" });
+        } else if (Array.isArray(result)) {
+          res.status(200).send({ workout: result[0] });
+        }
+      });
+  } else if (!user_id.match(/[0-9]/g)) {
+    return Promise.reject({
+      status: 400,
+      msg: "Bad request: invalid user id type",
+    }).catch(next);
+  } else if (!workout_id.match(/[0-9]/g)) {
+    return Promise.reject({
+      status: 400,
+      msg: "Bad request: invalid workout id type",
+    }).catch(next);
+  }
 };
 
 module.exports = {
@@ -206,4 +247,5 @@ module.exports = {
   deleteUserById,
   patchUser,
   getWorkouts,
+  getWorkoutById,
 };
