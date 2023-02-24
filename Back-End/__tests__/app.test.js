@@ -182,7 +182,18 @@ describe("post user /api/users", () => {
 });
 describe("delete user by id", () => {
   test("deletes user with given id", () => {
-    return request(app).delete("/api/users/0").expect(204);
+    const userToDelete = {
+      username: "deleteMe",
+      password: "goodbyeWorld",
+      avatar_url: "adios",
+    };
+    return request(app)
+      .post("/api/users")
+      .send(userToDelete)
+      .expect(201)
+      .then(() => {
+        return request(app).delete("/api/users/1").expect(204);
+      });
   });
   test("404 error: non existant ID", () => {
     return request(app)
