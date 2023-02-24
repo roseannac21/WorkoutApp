@@ -7,7 +7,7 @@ const { AutoIncrement } = require("../connection");
 // const WeightSchema = new mongoose.Schema({ WeightSchema: { type: String } });
 // const SetsSchema = new mongoose.Schema({ sets: { type: Number } });
 const WorkoutSchema = new mongoose.Schema({
-  exercise: { type: String },
+  exercise: { type: String, ref: "Exercise" },
   reps: { type: Number },
   duration: { type: String },
   WeightSchema: { type: String },
