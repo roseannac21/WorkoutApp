@@ -6,9 +6,22 @@ import {
   Image,
   TextInput,
   TouchableOpacity,
+  FlatList,
 } from 'react-native';
+import { useEffect, useState } from 'react';
+import { getUsers } from '../utils/api';
+
 
 const HomeScreen = ({ navigation }) => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [user, setUser] = useState('');
+  useEffect(() => {
+    setIsLoading(true);
+    getUsers().then((user) => {
+      setUser(user);
+    });
+  });
+
   return (
     <SafeAreaView
       style={{
@@ -16,11 +29,11 @@ const HomeScreen = ({ navigation }) => {
         backgroundColor: '#fff',
       }}
     >
-      <ScrollView
+      {/* <ScrollView
         style={{
           padding: 20,
         }}
-      >
+      > */}
         <View
           style={{
             flexDirection: 'row',
@@ -36,21 +49,23 @@ const HomeScreen = ({ navigation }) => {
           >
             Hello User
           </Text>
-          <TouchableOpacity
-            onPress={() => {navigation.navigate('User');
-            }}
-          >
-            <Image
-              source={{
-                uri: 'https://www.boris-johnson.org.uk/sites/www.boris-johnson.org.uk/files/2020-08/The%20Gym%20Group.jpg',
-              }}
-              style={{
-                width: 35,
-                height: 35,
-                borderRadius: 25,
-              }}
-            />
-          </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate('User', { id: user._id});
+                }}
+              >
+                <Image
+                  source={{
+                    uri: 'https://www.boris-johnson.org.uk/sites/www.boris-johnson.org.uk/files/2020-08/The%20Gym%20Group.jpg',
+                  }}
+                  style={{
+                    width: 35,
+                    height: 35,
+                    borderRadius: 25,
+                    backgroundColor: '#0000'
+                  }}
+                  />
+              </TouchableOpacity>
         </View>
 
         <View
@@ -81,7 +96,7 @@ const HomeScreen = ({ navigation }) => {
             Exercises
           </Text>
         </View>
-      </ScrollView>
+      {/* </ScrollView> */}
     </SafeAreaView>
   );
 };

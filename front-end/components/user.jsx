@@ -1,10 +1,11 @@
-import { SafeAreaview, Text } from 'react-native';
+import { SafeAreaView, Text } from 'react-native';
+
 
 const User = () => {
   return (
-    <SafeAreaview>
-      <Text>User</Text>
-    </SafeAreaview>
+    <SafeAreaView>
+      <Text>Am I Visable? {userById}</Text>
+    </SafeAreaView>
   );
 };
 
