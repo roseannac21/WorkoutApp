@@ -393,7 +393,7 @@ describe("get workouts", () => {
   });
 });
 
-describe.only("GET workouts by workout id: /api/users/:_id/workouts/:_id", () => {
+describe("GET workouts by workout id: /api/users/:_id/workouts/:_id", () => {
   test("returns workout object with the correct properties", () => {
     return request(app)
       .get("/api/users/0/workouts/0")
