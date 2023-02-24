@@ -12,14 +12,14 @@ import { useEffect, useState } from 'react';
 import { getUsers } from '../utils/api';
 
 const HomeScreen = ({ navigation }) => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [users, setUsers] = useState('');
-  useEffect(() => {
-    setIsLoading(true);
-    getUsers().then((users) => {
-      setUsers(users);
-    });
-  });
+  // const [isLoading, setIsLoading] = useState(true);
+  // const [users, setUsers] = useState('');
+  // useEffect(() => {
+  //   setIsLoading(true);
+  //   getUsers().then((users) => {
+  //     setUsers(users);
+  //   });
+  // });
 
   return (
     <SafeAreaView
@@ -28,11 +28,11 @@ const HomeScreen = ({ navigation }) => {
         backgroundColor: '#fff',
       }}
     >
-      {/* <ScrollView
+      <ScrollView
         style={{
           padding: 20,
         }}
-      > */}
+      >
       <View
         style={{
           flexDirection: 'row',
@@ -49,13 +49,9 @@ const HomeScreen = ({ navigation }) => {
           Hello User
         </Text>
         <TouchableOpacity
-          data={users}
+          // data={users}
           onPress={() => {
-            navigation.navigate('User', {
-              id: users.map((user) => {
-                return user._id;
-              }),
-            });
+            navigation.navigate('User')
           }}
         >
           <Image
@@ -100,7 +96,7 @@ const HomeScreen = ({ navigation }) => {
           Exercises
         </Text>
       </View>
-      {/* </ScrollView> */}
+      </ScrollView>
     </SafeAreaView>
   );
 };

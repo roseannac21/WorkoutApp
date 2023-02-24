@@ -6,8 +6,19 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
+import { useEffect, useState } from 'react';
+import { getUsers } from '../utils/api';
 
 const Welcome = ({ navigation }) => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [users, setUsers] = useState('');
+  useEffect(() => {
+    setIsLoading(true);
+    getUsers().then((users) => {
+      setUsers(users);
+    });
+  });
+
   return (
     <SafeAreaView
       style={{
@@ -40,7 +51,13 @@ const Welcome = ({ navigation }) => {
         />
       </View>
       <TouchableOpacity
-        onPress={() => navigation.navigate('LogIn')}
+        onPress={() =>
+          navigation.navigate('LogIn', {
+            id: users.map((user) => {
+              user._id;
+            }),
+          })
+        }
         style={{
           backgroundColor: '#87CEEB',
           padding: 20,
@@ -62,7 +79,7 @@ const Welcome = ({ navigation }) => {
         </Text>
       </TouchableOpacity>
       <TouchableOpacity
-      onPress={() => navigation.navigate('SignUp')}
+        onPress={() => navigation.navigate('SignUp')}
         style={{
           backgroundColor: '#87CEEB',
           padding: 20,
@@ -85,9 +102,10 @@ const Welcome = ({ navigation }) => {
         </Text>
       </TouchableOpacity>
       <TouchableOpacity
-      onPress={() => {
-        navigation.navigate('Homescreen')
-      }}>
+        onPress={() => {
+          navigation.navigate('Homescreen');
+        }}
+      >
         <Text>Homescreen Test DELETE</Text>
       </TouchableOpacity>
     </SafeAreaView>

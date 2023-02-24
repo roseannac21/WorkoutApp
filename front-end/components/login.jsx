@@ -6,9 +6,14 @@ import {
   TextInput,
   ScrollView,
   Image,
+  Form
 } from 'react-native';
+import { useForm } from 'react-hook-form';
+import { useState } from 'react';
 
-const Login = ({navigation}) => {
+const Login = ({ navigation, route }) => {
+  const { register, handleSubmit } = useForm();
+  const [data, setData] = useState('');
   return (
     <SafeAreaView
       style={{
@@ -65,14 +70,16 @@ const Login = ({navigation}) => {
             margin: 10,
           }}
         >
-          <TextInput
-            placeholder="Username"
-            style={{
-              flex: 1,
-              paddingVertical: 0,
-            }}
-            keyboardType="default"
-          />
+          <Form onSubmit={handleSubmit(onSubmit)}>
+            <TextInput
+              placeholder="Username"
+              style={{
+                flex: 1,
+                paddingVertical: 0,
+              }}
+              keyboardType="default"
+            />
+          </Form>
         </View>
 
         <View
@@ -130,7 +137,9 @@ const Login = ({navigation}) => {
         </View>
 
         <TouchableOpacity
-          onPress={() => {navigation.navigate('SignUp')}}
+          onPress={() => {
+            navigation.navigate('SignUp');
+          }}
           style={{
             backgroundColor: '#87CEEB',
             padding: 20,
