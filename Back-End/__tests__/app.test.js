@@ -5,10 +5,12 @@ const Exercise = require("../schemas/ExerciseSchema");
 const User = require("../schemas/UserSchema");
 const Categories = require("../schemas/CategoriesSchema");
 const Counters = require("../schemas/CountersSchema");
+const Workouts = require("../schemas/WorkoutsSchema");
 const { exercises } = require("../data/test-data/test-exercises-data");
 const { users } = require("../data/test-data/test-user-data");
 const { categories } = require("../data/test-data/test-categories-data");
 const { database } = require("../connection");
+const { workouts } = require("../data/test-data/test-workouts-data");
 const url = process.env.DATABASE_URL;
 
 beforeEach(async () => {
@@ -21,6 +23,8 @@ beforeEach(async () => {
   await Categories.collection.insertMany(categories);
 
   await Counters.deleteMany();
+  // await Workouts.deleteMany();
+  // await Workouts.insert(workouts);
 });
 
 afterAll(async () => {

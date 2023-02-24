@@ -176,6 +176,15 @@ const patchUser = (req, res, next) => {
   });
 };
 
+const getWorkouts = (req, res, next) => {
+  const { _id } = req.params;
+  return Workouts.find()
+    .select("username")
+    .then((response) => {
+      console.log(response);
+    });
+};
+
 module.exports = {
   getUsers,
   getExercises,
@@ -186,4 +195,5 @@ module.exports = {
   postUser,
   deleteUserById,
   patchUser,
+  getWorkouts,
 };

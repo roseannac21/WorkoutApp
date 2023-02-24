@@ -9,6 +9,7 @@ const {
   getExerciseById,
   postUser,
   patchUser,
+  getWorkouts,
 } = require("./controller");
 
 const app = express();
@@ -36,6 +37,7 @@ app.get("/api/categories", getCategories);
 app.get("/api/users/:_id", getUserById);
 app.get("/api/exercises/:_id", getExerciseById);
 app.delete("/api/users/:user_id", deleteUserById);
+app.get("/api/users/:_id/workouts, getWorkouts");
 
 app.use(express.json());
 app.post("/api/users", postUser);
