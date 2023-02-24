@@ -12,10 +12,16 @@ const getUsers = (req, res, next) => {
 };
 
 const getExercises = (req, res, next) => {
-  if (req.query.muscle === undefined && req.query.difficulty === undefined) {
-    return Exercise.find().then((result) => {
-      res.status(200).send({ exercises: result });
-    });
+  if (
+    req.query.muscle === undefined &&
+    req.query.difficulty === undefined &&
+    req.query.category === undefined
+  ) {
+    return Exercise.find()
+      .then((result) => {
+        res.status(200).send({ exercises: result });
+      })
+      .catch(next);
   } else if (
     req.query.muscle &&
     ![
@@ -42,14 +48,30 @@ const getExercises = (req, res, next) => {
     return res
       .status(400)
       .send({ msg: "this difficulty level does not exist on the database" });
+  } else if (
+    req.query.category &&
+    !["strength", "stretching", "cardio"].includes(req.query.category)
+  ) {
+    return res
+      .status(400)
+      .send({ msg: "this category does not exist on the database" });
   } else if (req.query.muscle) {
     const query = req.query.muscle;
-    return Exercise.find({ muscle: query }).then((result) => {
-      res.status(200).send({ exercises: result });
-    });
+    return Exercise.find({ muscle: query })
+      .then((result) => {
+        res.status(200).send({ exercises: result });
+      })
+      .catch(next);
   } else if (req.query.difficulty) {
     const query = req.query.difficulty;
     return Exercise.find({ difficulty: query })
+      .then((result) => {
+        res.status(200).send({ exercises: result });
+      })
+      .catch(next);
+  } else if (req.query.category) {
+    const query = req.query.category;
+    return Exercise.find({ category: query })
       .then((result) => {
         res.status(200).send({ exercises: result });
       })

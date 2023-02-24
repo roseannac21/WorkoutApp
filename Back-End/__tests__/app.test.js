@@ -329,3 +329,16 @@ describe("filter exercises by difficulty- queries", () => {
       });
   });
 });
+describe("category query", () => {
+  test("status 200 and the exercises are correctly filtered by the given category", () => {
+    return request(app).get("/api/exercises?category=stretching").expect(200);
+  });
+  test("400 error", () => {
+    return request(app)
+      .get("/api/exercises?category=hello")
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe("this category does not exist on the database");
+      });
+  });
+});
