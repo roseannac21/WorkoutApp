@@ -1,4 +1,5 @@
 exports.workouts = {
+  _id: 0,
   name: "workout",
   user_id: 0,
   workout: [
