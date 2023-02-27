@@ -7,7 +7,7 @@ require("dotenv").config({
 
 const url = process.env.DATABASE_URL;
 
-console.log(url);
+// console.log(url);
 
 mongoose.connect(url);
 const database = mongoose.connection;

@@ -74,7 +74,7 @@ const getExercises = (req, res, next) => {
       .catch(next);
   } else if (req.query.category) {
     const query = req.query.category;
-    return Exercise.find({ category: query })
+    return Exercise.find({ type: query })
       .then((result) => {
         res.status(200).send({ exercises: result });
       })
@@ -236,6 +236,42 @@ const getWorkoutById = (req, res, next) => {
   }
 };
 
+const postWorkout = async (req, res, next) => {
+  const { user_id } = req.params;
+  if (isNaN(user_id))
+    return Promise.reject({
+      status: 400,
+      msg: "Bad request: invalid user ID type",
+    }).catch(next);
+  await User.findById({ _id: user_id }).then((result) => {
+    if (result === null) {
+      return res
+        .status(404)
+        .send({ msg: "Bad request: workout ID doesn't exist" });
+    } else {
+      run();
+    }
+  });
+
+  async function run() {
+    try {
+      let { _id } = (await Workouts.findOne()
+        .sort({ _id: -1 })
+        .limit(1)
+        .select({ _id: 1 })) || { _id: 0 };
+      const work = new Workouts({
+        _id: _id + 1,
+        name: req.body.name,
+        user_id: user_id,
+        workout: req.body.workout,
+      });
+      await work
+        .save()
+        .then((data) => res.status(201).send({ newWorkout: data }));
+    } catch (e) {
+      console.log(e);
+    }
+
 module.exports = {
   getUsers,
   getExercises,
@@ -248,4 +284,5 @@ module.exports = {
   patchUser,
   getWorkouts,
   getWorkoutById,
+  postWorkout,
 };

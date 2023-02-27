@@ -11,6 +11,7 @@ const {
   patchUser,
   getWorkouts,
   getWorkoutById,
+  postWorkout,
 } = require("./controller");
 
 const app = express();
@@ -44,6 +45,7 @@ app.get("/api/users/:user_id/workouts/:workout_id", getWorkoutById);
 app.use(express.json());
 app.post("/api/users", postUser);
 app.patch("/api/users/:_id", patchUser);
+app.post("/api/users/:user_id/workouts", postWorkout);
 
 app.use((err, req, res, next) => {
   if (err.status) {
