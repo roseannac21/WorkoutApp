@@ -184,6 +184,34 @@ describe("post user /api/users", () => {
         });
       });
   });
+  test("400: username less than 4 characters", () => {
+    const newUser = {
+      username: "use",
+      password: "helloWorld",
+      avatar_url: "....",
+    };
+    return request(app)
+      .post("/api/users")
+      .send(newUser)
+      .expect(400)
+      .then(({ body: { msg } }) => {
+        expect(msg).toBe("username must be 4 or more characters");
+      });
+  });
+  test("400: password less than 6 characters", () => {
+    const newUser = {
+      username: "user1",
+      password: "hello",
+      avatar_url: "....",
+    };
+    return request(app)
+      .post("/api/users")
+      .send(newUser)
+      .expect(400)
+      .then(({ body: { msg } }) => {
+        expect(msg).toBe("password must be 6 or more characters");
+      });
+  });
 });
 describe("delete user by id", () => {
   test("deletes user with given id", () => {
@@ -217,6 +245,7 @@ describe("delete user by id", () => {
       });
   });
 });
+
 describe("patch user", () => {
   test("status 200 and user info is successfully updated", () => {
     const userToPatch = {
@@ -260,6 +289,7 @@ describe("patch user", () => {
     return request(app).patch("/api/users/hello").send(userToPatch).expect(400);
   });
 });
+
 describe("filter exercises by musclegroup- queries", () => {
   test("status 200 and exercises are filtered by given muscle group", () => {
     return request(app)
