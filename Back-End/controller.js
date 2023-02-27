@@ -196,37 +196,56 @@ const getWorkouts = (req, res, next) => {
 };
 
 const postWorkout = async (req, res, next) => {
-  const user_id = parseInt(req.params.user_id);
-  // if (isNaN(parseInt(user_id)) === false) {
-  // await User.find({ _id: user_id }).then((response) => {
-  //   if (response.length === 0) {
-  //     return res.status(404).send({ msg: "Bad request: ID doesn't exist" });
-  //   }
-  if (!isNaN(user_id)) {
-    console.log(user_id);
-    User.find({ _id: user_id }).then((response) => {
-      if (response.length === 0) {
-        return res.status(404).send({ msg: "Bad request: ID doesn't exist" });
-      }
-      console.log(response);
-    });
-    let { _id } = (await Workouts.findOne()
-      .sort({ _id: -1 })
-      .limit(1)
-      .select({ _id: 1 })) || { _id: 0 };
-    console.log(_id);
-    const newWorkout = new Workouts({
-      _id: _id + 1,
-      name: req.body.name,
-      user_id: req.body.user_id,
-      workout: req.body.workout,
-    });
-    newWorkout.save().then((result) => {
-      res.status(201).send({ newWorkout: result });
-    });
+  const { user_id } = req.params;
+  console.log(user_id);
+  if (isNaN(user_id))
+    return Promise.reject({
+      status: 400,
+      msg: "Bad request: invalid user id type",
+    }).catch(next);
+  await User.findById({ _id: user_id }).then((result) => {
+    if (result === null) {
+      return res
+        .status(404)
+        .send({ msg: "Bad request: workout ID doesn't exist" });
+    } else {
+      run();
+    }
+  });
+
+  async function run() {
+    try {
+      let { _id } = (await Workouts.findOne()
+        .sort({ _id: -1 })
+        .limit(1)
+        .select({ _id: 1 })) || { _id: 0 };
+      console.log(_id, "<<id");
+      // console.log(req.body);
+      const work = new Workouts({
+        _id: _id + 1,
+        name: req.body.name,
+        user_id: user_id,
+        workout: [
+          {
+            exercise: req.body.workout.exercise,
+            reps: req.body.workout.reps,
+            weight: req.body.workout.weight,
+            sets: req.body.workout.sets,
+          },
+          {
+            exercise: req.body.workout.exercise,
+            duration: req.body.workout.duration,
+          },
+        ],
+      });
+      await work
+        .save()
+        .then((data) => res.status(201).send({ newWorkout: data }));
+    } catch (e) {
+      console.log(e);
+    }
   }
 };
-// };
 
 module.exports = {
   getUsers,

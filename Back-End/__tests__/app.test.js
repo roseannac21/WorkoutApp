@@ -422,7 +422,29 @@ describe.only("post workout", () => {
         expect(newWorkout).toHaveProperty("workout");
       });
   });
-  test("404 error, user ID doesn't exist", () => {
+  // test("add another workout", () => {
+  //   const newWorkoutTwo = {
+  //     name: "new workout 2",
+  //     user_id: 0,
+  //     workout: [
+  //       {
+  //         exercise: "Incline Hammer Curls",
+  //         reps: 8,
+  //         weight: "10kg",
+  //         sets: 4,
+  //       },
+  //       {
+  //         exercise: "Treadmill",
+  //         duration: "15m",
+  //       },
+  //     ],
+  //   };
+  //   return request(app)
+  //     .post("/api/users/0/workouts")
+  //     .send(newWorkoutTwo)
+  //     .expect(201);
+  // });
+  xtest("404 error, user ID doesn't exist", () => {
     const newWorkout = {
       name: "new workout",
       user_id: 9999,

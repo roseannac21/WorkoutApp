@@ -1,5 +1,5 @@
 exports.workouts = {
-  _id: 0,
+  _id: 110,
   name: "test workout",
   user_id: 0,
   workout: [
@@ -11,5 +11,4 @@ exports.workouts = {
     },
     { exercise: "Jumping rope", duration: "10m" },
   ],
-  _id: 0,
 };
