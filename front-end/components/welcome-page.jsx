@@ -55,7 +55,7 @@ const Welcome = ({ navigation }) => {
           navigation.navigate('LogIn', {
             screen: 'LogIn',
             id: users.map((user) => {
-              return user._id;
+              return user._id
             }),
           })
         }

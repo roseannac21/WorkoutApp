@@ -8,14 +8,20 @@ import {
   Image,
   Form,
 } from 'react-native';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { getUserById } from '../utils/api';
 
 const Login = ({ navigation, route }) => {
   const [user, setUser] = useState('');
   const [pass, setPass] = useState('');
-  const {username, password} = route.params
-  console.log(username, "<-- USERNAME")
-  console.log(password, "<---- PASSWORD")
+  const [userById, setUserById] = useState('')
+  const {id} = route.params
+
+  useEffect(() => {
+    getUserById(id).then((user) => {
+      setUserById(user)
+    })
+  })
   return (
     <SafeAreaView
       style={{
@@ -107,10 +113,10 @@ const Login = ({ navigation, route }) => {
         <TouchableOpacity
           title="Submit"
           onPress={() => {
-            if (username === user && password === pass) {
+            if (userById.username === user && userById.password === pass) {
               navigation.navigate('HomeScreen');
-            } else if (username !== user && password !== pass) {
-              navigation.navigate('SignUp')
+            } else if (userById.username !== user && userById.password !== pass) {
+              alert('Username or Password not recognised!')
             }
           }}
           style={{
