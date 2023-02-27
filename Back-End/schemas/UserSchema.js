@@ -12,7 +12,7 @@ const UserSchema = new mongoose.Schema(
   { _id: false }
 );
 
-UserSchema.plugin(AutoIncrement);
+UserSchema.plugin(AutoIncrement, "User");
 const User = mongoose.model("User", UserSchema, "users");
 
 module.exports = User;

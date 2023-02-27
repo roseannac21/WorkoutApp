@@ -31,7 +31,7 @@ afterAll(async () => {
   await database.close();
 });
 
-// jest.setTimeout(15000);
+jest.setTimeout(15000);
 
 describe("GET /api/users", () => {
   test("should return all users", () => {
@@ -408,6 +408,62 @@ describe("get workouts", () => {
       });
   });
 });
+
+describe("GET workouts by workout id: /api/users/:_id/workouts/:_id", () => {
+  test("returns workout object with the correct properties", () => {
+    return request(app)
+      .get("/api/users/0/workouts/0")
+      .expect(200)
+      .then(({ body: { workout } }) => {
+        expect(workout).toHaveProperty("_id", expect.any(Number)),
+          expect(workout).toHaveProperty("name", expect.any(String)),
+          expect(workout).toHaveProperty("workout");
+      });
+  });
+  test("returns correct workout", () => {
+    return request(app)
+      .get("/api/users/0/workouts/0")
+      .expect(200)
+      .then(({ body: { workout } }) => {
+        expect(workout._id).toBe(0);
+      });
+  });
+  test("400 status: invalid workout id type", () => {
+    return request(app)
+      .get("/api/users/0/workouts/hey")
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe("Bad request: invalid workout id type");
+      });
+  });
+  test("400 status: invalid user id type", () => {
+    return request(app)
+      .get("/api/users/yo/workouts/hey")
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe("Bad request: invalid user id type");
+      });
+  });
+  test("404 status: nonexistent user id", () => {
+    return request(app)
+      .get("/api/users/2000/workouts/0")
+      .expect(404)
+      .then(({ body }) => {
+        console.log(body);
+        expect(body.msg).toBe("Bad request: user ID doesn't exist");
+      });
+  });
+  test("404 status: nonexistent workout id", () => {
+    return request(app)
+      .get("/api/users/0/workouts/100")
+      .expect(404)
+      .then(({ body }) => {
+        console.log(body);
+        expect(body.msg).toBe("Bad request: workout ID doesn't exist");
+      });
+  });
+});
+
 describe("post workout", () => {
   test("status 201 and a new workout is posted to a user's id", () => {
     const newWorkout = {
@@ -485,6 +541,3 @@ describe("post workout", () => {
       .expect(400)
       .then(({ body }) => {
         expect(body.msg).toBe("Bad request: invalid user ID type");
-      });
-  });
-});
