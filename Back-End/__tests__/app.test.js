@@ -24,7 +24,7 @@ beforeEach(async () => {
 
   await Counters.deleteMany();
   await Workouts.deleteMany();
-  await Workouts.collection.insert(workouts);
+  await Workouts.collection.insertMany(workouts);
 });
 
 afterAll(async () => {
@@ -571,3 +571,6 @@ describe("post workout", () => {
       .expect(400)
       .then(({ body }) => {
         expect(body.msg).toBe("Bad request: invalid user ID type");
+      });
+  });
+});

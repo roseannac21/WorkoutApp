@@ -13,3 +13,4 @@ exports.workouts = [
       { exercise: "Jumping rope", duration: "10m" },
     ],
   },
+];
