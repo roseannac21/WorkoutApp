@@ -146,19 +146,31 @@ const deleteUserById = (req, res, next) => {
 };
 
 const postUser = (req, res, next) => {
-  const newUser = new User({
-    username: req.body.username,
-    password: req.body.password,
-    avatar_url: req.body.avatar_url,
-  });
-  return newUser
-    .save()
-    .then((result) => {
-      res.status(201).send({
-        userAdded: newUser,
-      });
-    })
-    .catch(next);
+  const { username, password, avatar_url } = req.body;
+  if (username.length < 4) {
+    return res
+      .status(400)
+      .send({ msg: "username must be 4 or more characters" });
+  }
+  if (password.length < 6) {
+    return res
+      .status(400)
+      .send({ msg: "password must be 6 or more characters" });
+  } else {
+    const newUser = new User({
+      username: username,
+      password: password,
+      avatar_url: avatar_url,
+    });
+    return newUser
+      .save()
+      .then((result) => {
+        res.status(201).send({
+          userAdded: newUser,
+        });
+      })
+      .catch(next);
+  }
 };
 
 const patchUser = (req, res, next) => {
