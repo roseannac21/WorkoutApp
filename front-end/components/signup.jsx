@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   View,
   Text,
@@ -7,8 +8,13 @@ import {
   ScrollView,
   Image,
 } from 'react-native';
+import { postUser } from '../utils/api';
 
 const SignUp = ({ navigation }) => {
+  const [newUser, setNewUser] = useState('')
+  const [newPassword, setNewPassword] = useState('')
+  const [newAvatar, setNewAvatar] = useState('')
+  console.log(newUser, "<-- NewUser")
   return (
     <SafeAreaView
       style={{
@@ -66,6 +72,10 @@ const SignUp = ({ navigation }) => {
           }}
         >
           <TextInput
+            onChangeText={(user) => {
+              setNewUser(user);
+              console.log(user, "<--- USER")
+            }}
             placeholder="Username"
             style={{
               flex: 1,
@@ -86,6 +96,9 @@ const SignUp = ({ navigation }) => {
           }}
         >
           <TextInput
+            onChangeText={(password) => {
+              setNewPassword(password);
+            }}
             placeholder="Password"
             style={{
               flex: 1,
@@ -106,6 +119,10 @@ const SignUp = ({ navigation }) => {
           }}
         >
           <TextInput
+            onChangeText={(avatar) => {
+              console.log(avatar, '<--- ');
+              setNewAvatar(avatar);
+            }}
             placeholder="Avatar URL"
             style={{
               flex: 1,
@@ -116,7 +133,12 @@ const SignUp = ({ navigation }) => {
         </View>
 
         <TouchableOpacity
-          onPress={() => {}}
+          title="Submit"
+          onPress={() => {
+            postUser(newUser, newPassword, newAvatar).then(({ data }) => {
+              console.log(data, '<-- DATA');
+            });
+          }}
           style={{
             backgroundColor: '#87CEEB',
             padding: 20,
@@ -150,7 +172,6 @@ const SignUp = ({ navigation }) => {
         </View>
 
         <TouchableOpacity
-          onPress={() => {}}
           style={{
             backgroundColor: '#87CEEB',
             padding: 20,
