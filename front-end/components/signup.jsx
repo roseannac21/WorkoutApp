@@ -11,10 +11,9 @@ import {
 import { postUser } from '../utils/api';
 
 const SignUp = ({ navigation }) => {
-  const [newUser, setNewUser] = useState('')
-  const [newPassword, setNewPassword] = useState('')
-  const [newAvatar, setNewAvatar] = useState('')
-  console.log(newUser, "<-- NewUser")
+  const [newUser, setNewUser] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [newAvatar, setNewAvatar] = useState('');
   return (
     <SafeAreaView
       style={{
@@ -74,7 +73,6 @@ const SignUp = ({ navigation }) => {
           <TextInput
             onChangeText={(user) => {
               setNewUser(user);
-              console.log(user, "<--- USER")
             }}
             placeholder="Username"
             style={{
@@ -120,7 +118,6 @@ const SignUp = ({ navigation }) => {
         >
           <TextInput
             onChangeText={(avatar) => {
-              console.log(avatar, '<--- ');
               setNewAvatar(avatar);
             }}
             placeholder="Avatar URL"
@@ -135,9 +132,7 @@ const SignUp = ({ navigation }) => {
         <TouchableOpacity
           title="Submit"
           onPress={() => {
-            postUser(newUser, newPassword, newAvatar).then(({ data }) => {
-              console.log(data, '<-- DATA');
-            });
+            postUser(newUser, newPassword, newAvatar)
           }}
           style={{
             backgroundColor: '#87CEEB',

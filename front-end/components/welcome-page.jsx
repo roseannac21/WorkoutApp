@@ -52,12 +52,7 @@ const Welcome = ({ navigation }) => {
       </View>
       <TouchableOpacity
         onPress={() =>
-          navigation.navigate('LogIn', {
-            screen: 'LogIn',
-            id: users.map((user) => {
-              return user._id
-            }),
-          })
+          navigation.navigate('LogIn')
         }
         style={{
           backgroundColor: '#87CEEB',

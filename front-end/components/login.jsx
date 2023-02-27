@@ -9,19 +9,13 @@ import {
   Form,
 } from 'react-native';
 import { useEffect, useState } from 'react';
-import { getUserById } from '../utils/api';
+import { getUserById, getUsers } from '../utils/api';
 
 const Login = ({ navigation, route }) => {
   const [user, setUser] = useState('');
   const [pass, setPass] = useState('');
-  const [userById, setUserById] = useState('')
-  const {id} = route.params
+  const [userById, setUserById] = useState('');
 
-  useEffect(() => {
-    getUserById(id).then((user) => {
-      setUserById(user)
-    })
-  })
   return (
     <SafeAreaView
       style={{
@@ -113,10 +107,20 @@ const Login = ({ navigation, route }) => {
         <TouchableOpacity
           title="Submit"
           onPress={() => {
+            getUsers().then((users) => {
+              const correctUser = users.filter((user1) => {
+                return user1.username === user;
+              });
+              console.log(correctUser[0]);
+              setUserById(correctUser[0]);
+            });
             if (userById.username === user && userById.password === pass) {
               navigation.navigate('HomeScreen');
-            } else if (userById.username !== user && userById.password !== pass) {
-              alert('Username or Password not recognised!')
+            } else if (
+              userById.username !== user ||
+              userById.password !== pass
+            ) {
+              alert('Username or Password not recognised!');
             }
           }}
           style={{
