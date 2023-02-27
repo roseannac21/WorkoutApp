@@ -286,6 +286,39 @@ const postWorkout = async (req, res, next) => {
   }
 };
 
+const deleteWorkout = (req, res, next) => {
+  const { workout_id, user_id } = req.params;
+  if (user_id.match(/[0-9]/g) && workout_id.match(/[0-9]/g)) {
+    return User.findById({ _id: user_id }).then((result) => {
+      if (result === null) {
+        return res
+          .status(404)
+          .send({ msg: "Bad Request: user ID does not exist" });
+      }
+      return Workouts.deleteOne({ user_id: user_id, _id: workout_id }).then(
+        (result) => {
+          if (result.deletedCount === 0) {
+            return res
+              .status(404)
+              .send({ msg: "Bad Request: workout ID does not exist" });
+          }
+          return res.status(204).send();
+        }
+      );
+    });
+  } else if (!user_id.match(/[0-9]/g)) {
+    return Promise.reject({
+      status: 400,
+      msg: "Bad Request: invalid user ID type",
+    }).catch(next);
+  } else if (!workout_id.match(/[0-9]/g)) {
+    return Promise.reject({
+      status: 400,
+      msg: "Bad Request: invalid workout ID type",
+    }).catch(next);
+  }
+};
+
 module.exports = {
   getUsers,
   getExercises,
@@ -299,4 +332,5 @@ module.exports = {
   getWorkouts,
   getWorkoutById,
   postWorkout,
+  deleteWorkout,
 };

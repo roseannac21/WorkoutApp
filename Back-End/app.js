@@ -12,6 +12,7 @@ const {
   getWorkouts,
   getWorkoutById,
   postWorkout,
+  deleteWorkout,
 } = require("./controller");
 
 const app = express();
@@ -41,6 +42,7 @@ app.get("/api/exercises/:_id", getExerciseById);
 app.delete("/api/users/:user_id", deleteUserById);
 app.get("/api/users/:_id/workouts", getWorkouts);
 app.get("/api/users/:user_id/workouts/:workout_id", getWorkoutById);
+app.delete("/api/users/:user_id/workouts/:workout_id", deleteWorkout);
 
 app.use(express.json());
 app.post("/api/users", postUser);

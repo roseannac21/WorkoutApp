@@ -574,3 +574,63 @@ describe("post workout", () => {
       });
   });
 });
+
+describe("delete workout by ID", () => {
+  test("status 204, workout is successfully deleted", () => {
+    const workoutToDelete = {
+      name: "new workout",
+      user_id: 0,
+      workout: [
+        {
+          exercise: "Incline Hammer Curls",
+          reps: 8,
+          weight: "10kg",
+          sets: 4,
+        },
+        {
+          exercise: "Treadmill",
+          duration: "15m",
+        },
+      ],
+    };
+    return request(app)
+      .post("/api/users/0/workouts")
+      .send(workoutToDelete)
+      .expect(201)
+      .then(() => {
+        return request(app).delete("/api/users/0/workouts/1").expect(204);
+      });
+  });
+  test("404 error user ID doesn't exist", () => {
+    return request(app)
+      .delete("/api/users/9999/workouts/1")
+      .expect(404)
+      .then(({ body }) => {
+        expect(body.msg).toBe("Bad Request: user ID does not exist");
+      });
+  });
+  test("404 error workout Id doesnt exist", () => {
+    return request(app)
+      .delete("/api/users/0/workouts/9999")
+      .expect(404)
+      .then(({ body }) => {
+        expect(body.msg).toBe("Bad Request: workout ID does not exist");
+      });
+  });
+  test("400 error invalid type for user ID", () => {
+    return request(app)
+      .delete("/api/users/hello/workouts/0")
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe("Bad Request: invalid user ID type");
+      });
+  });
+  test("400 error invalid type for workout ID", () => {
+    return request(app)
+      .delete("/api/users/0/workouts/hello")
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe("Bad Request: invalid workout ID type");
+      });
+  });
+});
