@@ -53,8 +53,9 @@ const Welcome = ({ navigation }) => {
       <TouchableOpacity
         onPress={() =>
           navigation.navigate('LogIn', {
+            screen: 'LogIn',
             id: users.map((user) => {
-              user._id;
+              return user._id;
             }),
           })
         }
@@ -103,7 +104,7 @@ const Welcome = ({ navigation }) => {
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate('Homescreen');
+          navigation.navigate('HomeScreen');
         }}
       >
         <Text>Homescreen Test DELETE</Text>

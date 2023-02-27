@@ -6,14 +6,16 @@ import {
   TextInput,
   ScrollView,
   Image,
-  Form
+  Form,
 } from 'react-native';
-import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 
 const Login = ({ navigation, route }) => {
-  const { register, handleSubmit } = useForm();
-  const [data, setData] = useState('');
+  const [user, setUser] = useState('');
+  const [pass, setPass] = useState('');
+  const {username, password} = route.params
+  console.log(username, "<-- USERNAME")
+  console.log(password, "<---- PASSWORD")
   return (
     <SafeAreaView
       style={{
@@ -70,16 +72,15 @@ const Login = ({ navigation, route }) => {
             margin: 10,
           }}
         >
-          <Form onSubmit={handleSubmit(onSubmit)}>
-            <TextInput
-              placeholder="Username"
-              style={{
-                flex: 1,
-                paddingVertical: 0,
-              }}
-              keyboardType="default"
-            />
-          </Form>
+          <TextInput
+            placeholder="Username"
+            onChangeText={(text) => setUser(text)}
+            style={{
+              flex: 1,
+              paddingVertical: 0,
+            }}
+            keyboardType="default"
+          />
         </View>
 
         <View
@@ -94,6 +95,7 @@ const Login = ({ navigation, route }) => {
         >
           <TextInput
             placeholder="Password"
+            onChangeText={(text) => setPass(text)}
             style={{
               flex: 1,
               paddingVertical: 0,
@@ -103,7 +105,14 @@ const Login = ({ navigation, route }) => {
         </View>
 
         <TouchableOpacity
-          onPress={() => {}}
+          title="Submit"
+          onPress={() => {
+            if (username === user && password === pass) {
+              navigation.navigate('HomeScreen');
+            } else if (username !== user && password !== pass) {
+              navigation.navigate('SignUp')
+            }
+          }}
           style={{
             backgroundColor: '#87CEEB',
             padding: 20,
