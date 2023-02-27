@@ -72,7 +72,7 @@ const getExercises = (req, res, next) => {
       .catch(next);
   } else if (req.query.category) {
     const query = req.query.category;
-    return Exercise.find({ category: query })
+    return Exercise.find({ type: query })
       .then((result) => {
         res.status(200).send({ exercises: result });
       })
@@ -197,11 +197,10 @@ const getWorkouts = (req, res, next) => {
 
 const postWorkout = async (req, res, next) => {
   const { user_id } = req.params;
-  console.log(user_id);
   if (isNaN(user_id))
     return Promise.reject({
       status: 400,
-      msg: "Bad request: invalid user id type",
+      msg: "Bad request: invalid user ID type",
     }).catch(next);
   await User.findById({ _id: user_id }).then((result) => {
     if (result === null) {
@@ -219,24 +218,11 @@ const postWorkout = async (req, res, next) => {
         .sort({ _id: -1 })
         .limit(1)
         .select({ _id: 1 })) || { _id: 0 };
-      console.log(_id, "<<id");
-      // console.log(req.body);
       const work = new Workouts({
         _id: _id + 1,
         name: req.body.name,
         user_id: user_id,
-        workout: [
-          {
-            exercise: req.body.workout.exercise,
-            reps: req.body.workout.reps,
-            weight: req.body.workout.weight,
-            sets: req.body.workout.sets,
-          },
-          {
-            exercise: req.body.workout.exercise,
-            duration: req.body.workout.duration,
-          },
-        ],
+        workout: req.body.workout,
       });
       await work
         .save()

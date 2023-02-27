@@ -46,7 +46,6 @@ app.patch("/api/users/:_id", patchUser);
 app.post("/api/users/:user_id/workouts", postWorkout);
 
 app.use((err, req, res, next) => {
-  console.log(err);
   if (err.status) {
     res.status(err.status).send({ msg: err.msg });
   } else {
@@ -55,7 +54,6 @@ app.use((err, req, res, next) => {
 });
 
 app.use((err, req, res, next) => {
-  console.log(err);
   if (err.code === "22P02") {
     res.status(400).send({ msg: "Bad Request" });
   } else {
