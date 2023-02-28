@@ -6,19 +6,8 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
-import { useEffect, useState } from 'react';
-import { getUsers } from '../utils/api';
 
 const Welcome = ({ navigation }) => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [users, setUsers] = useState('');
-  useEffect(() => {
-    setIsLoading(true);
-    getUsers().then((users) => {
-      setUsers(users);
-    });
-  });
-
   return (
     <SafeAreaView
       style={{

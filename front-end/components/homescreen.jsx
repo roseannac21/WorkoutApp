@@ -7,18 +7,8 @@ import {
   TextInput,
   TouchableOpacity,
 } from 'react-native';
-import { useEffect, useState } from 'react';
-import { getUsers } from '../utils/api';
 
 const HomeScreen = ({ navigation }) => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [users, setUsers] = useState('');
-  useEffect(() => {
-    setIsLoading(true);
-    getUsers().then((users) => {
-      setUsers(users);
-    });
-  });
 
   return (
     <SafeAreaView
@@ -48,14 +38,8 @@ const HomeScreen = ({ navigation }) => {
             Hello User
           </Text>
           <TouchableOpacity
-            data={users}
             onPress={() => {
-              navigation.navigate('User', {
-                screen: 'User',
-                id: users.map((user) => {
-                  return user._id;
-                }),
-              });
+              navigation.navigate('User');
             }}
           >
             <Image

@@ -6,15 +6,23 @@ import {
   TextInput,
   ScrollView,
   Image,
-  Form,
 } from 'react-native';
-import { useState } from 'react';
-import {  getUsers } from '../utils/api';
+import { useEffect, useState } from 'react';
+import { getUsers } from '../utils/api';
 
 const Login = ({ navigation, route }) => {
   const [user, setUser] = useState('');
   const [pass, setPass] = useState('');
-  const [userById, setUserById] = useState('');
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const fetchedUsers = await getUsers();
+      console.log(fetchedUsers, '<-- USERS');
+      setUsers(fetchedUsers);
+    }
+    fetchData();
+  }, []);
 
   return (
     <SafeAreaView
@@ -107,19 +115,15 @@ const Login = ({ navigation, route }) => {
         <TouchableOpacity
           title="Submit"
           onPress={() => {
-            getUsers().then((users) => {
-              const correctUser = users.filter((user1) => {
-                return user1.username === user;
-              });
-              console.log(correctUser[0]);
-              setUserById(correctUser[0]);
+            const correctUser = users.find((user1) => {
+              return user1.username === user;
             });
-            if (userById.username === user && userById.password === pass) {
-              navigation.navigate('HomeScreen');
-            } else if (
-              userById.username !== user ||
-              userById.password !== pass
+            if (
+              correctUser.username === user &&
+              correctUser.password === pass
             ) {
+              navigation.navigate('HomeScreen');
+            } else {
               alert('Username or Password not recognised!');
             }
           }}
