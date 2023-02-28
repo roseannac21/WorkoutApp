@@ -24,8 +24,8 @@ export default function App() {
         <Stack.Screen component={HomeScreen} name="HomeScreen" />
         <Stack.Screen component={SignUp} name="SignUp" />
         <Stack.Screen component={User} name="User" />
-        <Stack.Screen component={SingleExercise} name="SingleExercise" />
         <Stack.Screen component={ExerciseList} name="ExerciseList" />
+        <Stack.Screen component={SingleExercise} name="SingleExercise" />
       </Stack.Navigator>
     </NavigationContainer>
   );

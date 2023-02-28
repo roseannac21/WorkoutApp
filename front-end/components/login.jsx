@@ -6,19 +6,18 @@ import {
   TextInput,
   ScrollView,
   Image,
-} from 'react-native';
-import { useEffect, useState } from 'react';
-import { getUsers } from '../utils/api';
+} from "react-native";
+import { useEffect, useState } from "react";
+import { getUsers } from "../utils/api";
 
 const Login = ({ navigation, route }) => {
-  const [user, setUser] = useState('');
-  const [pass, setPass] = useState('');
+  const [user, setUser] = useState("");
+  const [pass, setPass] = useState("");
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
       const fetchedUsers = await getUsers();
-      console.log(fetchedUsers, '<-- USERS');
       setUsers(fetchedUsers);
     }
     fetchData();
@@ -28,8 +27,8 @@ const Login = ({ navigation, route }) => {
     <SafeAreaView
       style={{
         flex: 1,
-        backgroundColor: '#fff',
-        justifyContent: 'center',
+        backgroundColor: "#fff",
+        justifyContent: "center",
       }}
     >
       <ScrollView
@@ -39,12 +38,12 @@ const Login = ({ navigation, route }) => {
       >
         <View
           style={{
-            justifyContent: 'center',
+            justifyContent: "center",
           }}
         >
           <Image
             source={{
-              uri: 'https://c4.wallpaperflare.com/wallpaper/695/308/1005/d-grass-paw-caine-wallpaper-preview.jpg',
+              uri: "https://c4.wallpaperflare.com/wallpaper/695/308/1005/d-grass-paw-caine-wallpaper-preview.jpg",
             }}
             style={{
               width: 375,
@@ -54,15 +53,15 @@ const Login = ({ navigation, route }) => {
         </View>
         <View
           style={{
-            flexDirection: 'row',
-            justifyContent: 'center',
+            flexDirection: "row",
+            justifyContent: "center",
             marginBottom: 20,
           }}
         >
           <Text
             style={{
               fontSize: 18,
-              fontWeight: 'bold',
+              fontWeight: "bold",
               paddingVertical: 20,
             }}
           >
@@ -72,8 +71,8 @@ const Login = ({ navigation, route }) => {
 
         <View
           style={{
-            flexDirection: 'row',
-            borderColor: '#C6C6C6',
+            flexDirection: "row",
+            borderColor: "#C6C6C6",
             borderWidth: 1,
             paddingHorizontal: 10,
             paddingVertical: 8,
@@ -93,8 +92,8 @@ const Login = ({ navigation, route }) => {
 
         <View
           style={{
-            flexDirection: 'row',
-            borderColor: '#C6C6C6',
+            flexDirection: "row",
+            borderColor: "#C6C6C6",
             borderWidth: 1,
             paddingHorizontal: 10,
             paddingVertical: 8,
@@ -122,13 +121,13 @@ const Login = ({ navigation, route }) => {
               correctUser.username === user &&
               correctUser.password === pass
             ) {
-              navigation.navigate('HomeScreen');
+              navigation.navigate("HomeScreen");
             } else {
-              alert('Username or Password not recognised!');
+              alert("Username or Password not recognised!");
             }
           }}
           style={{
-            backgroundColor: '#87CEEB',
+            backgroundColor: "#87CEEB",
             padding: 20,
             borderRadius: 10,
             marginBottom: 30,
@@ -137,10 +136,10 @@ const Login = ({ navigation, route }) => {
         >
           <Text
             style={{
-              textAlign: 'center',
-              fontWeight: 'bold',
+              textAlign: "center",
+              fontWeight: "bold",
               fontSize: 18,
-              color: '#fff',
+              color: "#fff",
             }}
           >
             Sign In
@@ -149,8 +148,8 @@ const Login = ({ navigation, route }) => {
         <View>
           <Text
             style={{
-              textAlign: 'center',
-              color: '#666',
+              textAlign: "center",
+              color: "#666",
               marginTop: 20,
               marginBottom: 40,
             }}
@@ -161,10 +160,10 @@ const Login = ({ navigation, route }) => {
 
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate('SignUp');
+            navigation.navigate("SignUp");
           }}
           style={{
-            backgroundColor: '#87CEEB',
+            backgroundColor: "#87CEEB",
             padding: 20,
             borderRadius: 10,
             marginBottom: 30,
@@ -173,10 +172,10 @@ const Login = ({ navigation, route }) => {
         >
           <Text
             style={{
-              textAlign: 'center',
-              fontWeight: 'bold',
+              textAlign: "center",
+              fontWeight: "bold",
               fontSize: 18,
-              color: '#fff',
+              color: "#fff",
             }}
           >
             Sign Up

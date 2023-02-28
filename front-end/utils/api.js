@@ -1,11 +1,11 @@
-import axios from 'axios';
+import axios from "axios";
 
 const workoutAPI = axios.create({
-  baseURL: 'https://workout-app-93fn.onrender.com/api'
+  baseURL: "https://workout-app-ix1o.onrender.com/api",
 });
 
 export const getUsers = () => {
-  console.log('getting users ...')
+  // console.log('getting users ...')
   return axios
     .get(`https://workout-app-ix1o.onrender.com/api/users`)
     .then(({ data }) => {

@@ -9,10 +9,12 @@ import {
 } from "react-native";
 import { getAllExercises } from "../utils/api";
 import { useState, useEffect } from "react";
+import SingleExercise from "./single-exercise";
 const ExerciseList = ({ navigation, route }) => {
   const [exercises, setExercises] = useState([]);
   const [singleExerciseId, setSingleExerciseId] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     setIsLoading(true);
     getAllExercises().then((data) => {
@@ -26,20 +28,22 @@ const ExerciseList = ({ navigation, route }) => {
   return (
     <ScrollView>
       {exercises.map((exercise) => {
-        return (
-          <Button
-            onPress={() => {
-              setSingleExerciseId(exercise._id);
-              navigation.navigate("SingleExercise", {
-                id: singleExerciseId,
-              });
-            }}
-            title={exercise.name}
-            key={exercise.name}
-          />
-        );
+        navigation.navigate("SingleExercise", { exercise: exercise });
       })}
     </ScrollView>
   );
 };
+
 export default ExerciseList;
+
+// <Button
+//   onPress={() => {
+//     setSingleExerciseId(exercise._id);
+//     console.log(singleExerciseId);
+//     navigation.navigate("SingleExercise", {
+//       id: singleExerciseId,
+//     });
+//   }}
+//   title={exercise.name}
+//   key={exercise.name}
+// />
