@@ -8,8 +8,8 @@ import {
   Image,
   Form,
 } from 'react-native';
-import { useEffect, useState } from 'react';
-import { getUserById, getUsers } from '../utils/api';
+import { useState } from 'react';
+import {  getUsers } from '../utils/api';
 
 const Login = ({ navigation, route }) => {
   const [user, setUser] = useState('');
