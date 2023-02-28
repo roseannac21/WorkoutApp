@@ -2,7 +2,6 @@ const Exercise = require("./schemas/ExerciseSchema");
 const User = require("./schemas/UserSchema");
 const Categories = require("./schemas/CategoriesSchema");
 const Workouts = require("./schemas/WorkoutsSchema");
-const { app } = require("./app");
 const { workouts } = require("./data/test-data/test-workouts-data");
 // const { ObjectId } = require("mongodb");
 
