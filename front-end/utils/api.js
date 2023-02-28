@@ -27,3 +27,18 @@ export const postUser = (username, password, avatar_url) => {
   };
   return workoutAPI.post(`/users`, postBody);
 };
+
+export function getAllExercises() {
+  return axios
+    .get("https://workout-app-ix1o.onrender.com/api/exercises")
+    .then(({ data }) => {
+      return data;
+    });
+}
+export function getExerciseById(id) {
+  return axios
+    .get(`https://workout-app-ix1o.onrender.com/api/exercises/${id}`)
+    .then(({ data }) => {
+      return data;
+    });
+}
