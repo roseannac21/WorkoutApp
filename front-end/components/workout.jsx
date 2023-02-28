@@ -1,12 +1,20 @@
-import { useState, useEffect } from "react";
-import { SafeAreaView, ScrollView, View, TextInput, Text } from "react-native";
-import { getAllExercises } from "../utils/api";
-import { Card, ListItem } from "react-native-elements";
+import { useState, useEffect } from 'react';
+import {
+  SafeAreaView,
+  ScrollView,
+  View,
+  TextInput,
+  Text,
+  FlatList,
+} from 'react-native';
+import { getAllExercises } from '../utils/api';
+import { Card } from 'react-native-elements';
+import SingleWorkout from './single-workout';
 
 const Workout = ({ navigation }) => {
   const [allExercises, setAllExercises] = useState([]);
+  const [selectedId, setSelectedId] = useState([]);
 
-  //   console.log(allExercises);
   useEffect(() => {
     async function fetchData() {
       const fetchedExcercises = await getAllExercises();
@@ -15,49 +23,63 @@ const Workout = ({ navigation }) => {
     fetchData();
   }, []);
 
+  const renderItem = ({ item }) => {
+    const backgroundColor = item._id === selectedId ? '#6E3B6E' : '#F9C2FF';
+    const color = item._id === selectedId ? '#fff' : '#000';
+
+    return (
+      <SingleWorkout
+        item={item}
+        onPress={() => {
+          setSelectedId(item._id);
+        }}
+        backgroundColor={backgroundColor}
+        textColor={color}
+      />
+    );
+  };
+
   return (
     <SafeAreaView
       style={{
         flex: 1,
-        backgroundColor: "#fff",
+        backgroundColor: '#fff',
       }}
     >
-      <ScrollView
+      <View
         style={{
-          padding: 20,
+          flexDirection: 'row',
+          justifyContent: 'center',
+          margin: 10,
         }}
       >
-        <View
-          style={{
-            flexDirection: "row",
-            marginBottom: 20,
-          }}
-        >
-          <TextInput placeholder="Name your workout"></TextInput>
+        <View style={{ flexDirection: 'column' }}>
+          <Text
+            style={{
+              fontWeight: 'bold',
+              fontSize: 20,
+              marginBottom: 20,
+            }}
+          >
+            Name Your Workout
+          </Text>
+          <TextInput
+            style={{
+              borderColor: '#C6C6C6',
+              borderWidth: 0.5,
+              textAlign: 'center'
+            }}
+            placeholder="Name your workout"
+          ></TextInput>
         </View>
+      </View>
 
-        <Card>
-          {allExercises.map((exercise, i) => {
-            // return <Text> {exercise.name}</Text>;
-            return (
-              <ListItem
-                key={i}
-                onPress={() => {}}
-                containerStyle={{
-                  backgroundColor: isPressed ? "#87CEEB" : "white",
-                }}
-                bottomDivider
-              >
-                <Text
-                //   style={{ backgroundColor: isPressed ? "#87CEEB" : "#fff" }}
-                >
-                  {exercise.name}
-                </Text>
-              </ListItem>
-            );
-          })}
-        </Card>
-      </ScrollView>
+      <FlatList
+        data={allExercises}
+        renderItem={renderItem}
+        keyExtractor={(item) => item._id}
+        extraData={selectedId}
+      ></FlatList>
     </SafeAreaView>
   );
 };

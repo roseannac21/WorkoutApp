@@ -55,7 +55,7 @@ const HomeScreen = ({ navigation }) => {
           </TouchableOpacity>
         </View>
 
-        {/* <View
+        <View
           style={{
             flexDirection: 'row',
             borderColor: '#C6C6C6',
@@ -66,7 +66,7 @@ const HomeScreen = ({ navigation }) => {
           }}
         >
           <TextInput placeholder="Search" />
-        </View> */}
+        </View>
 
         <View
           style={{
