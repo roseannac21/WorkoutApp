@@ -15,12 +15,11 @@ const {
   postWorkout,
   deleteWorkout,
 } = require('./controller');
-
-const app = express();
-
 require('dotenv').config({
   path: `${__dirname}/.env.test`,
 });
+
+const app = express();
 
 const url = process.env.DATABASE_URL;
 
@@ -35,7 +34,7 @@ database.once('connected', () => {
   console.log('Database Connected');
 });
 
-app.use(cors({origin: true, credentials: true}));
+app.use(cors({ origin: true, credentials: true }));
 app.get('/api/users', getUsers);
 app.get('/api/exercises', getExercises);
 app.get('/api/categories', getCategories);
