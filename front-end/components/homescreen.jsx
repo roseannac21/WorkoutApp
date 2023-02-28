@@ -6,15 +6,14 @@ import {
   Image,
   TextInput,
   TouchableOpacity,
-} from 'react-native';
+} from "react-native";
 
 const HomeScreen = ({ navigation }) => {
-
   return (
     <SafeAreaView
       style={{
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: "#fff",
       }}
     >
       <ScrollView
@@ -24,39 +23,39 @@ const HomeScreen = ({ navigation }) => {
       >
         <View
           style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
+            flexDirection: "row",
+            justifyContent: "space-between",
             marginBottom: 20,
           }}
         >
           <Text
             style={{
               fontSize: 18,
-              fontWeight: 'bold',
+              fontWeight: "bold",
             }}
           >
             Hello User
           </Text>
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate('User');
+              navigation.navigate("User");
             }}
           >
             <Image
               source={{
-                uri: 'https://www.boris-johnson.org.uk/sites/www.boris-johnson.org.uk/files/2020-08/The%20Gym%20Group.jpg',
+                uri: "https://www.boris-johnson.org.uk/sites/www.boris-johnson.org.uk/files/2020-08/The%20Gym%20Group.jpg",
               }}
               style={{
                 width: 35,
                 height: 35,
                 borderRadius: 25,
-                backgroundColor: '#0000',
+                backgroundColor: "#0000",
               }}
             />
           </TouchableOpacity>
         </View>
 
-        <View
+        {/* <View
           style={{
             flexDirection: 'row',
             borderColor: '#C6C6C6',
@@ -67,12 +66,12 @@ const HomeScreen = ({ navigation }) => {
           }}
         >
           <TextInput placeholder="Search" />
-        </View>
+        </View> */}
 
         <View
           style={{
-            flexDirection: 'row',
-            justifyContent: 'center',
+            flexDirection: "row",
+            justifyContent: "center",
             marginVertical: 15,
           }}
         >
@@ -81,9 +80,17 @@ const HomeScreen = ({ navigation }) => {
               fontSize: 16,
             }}
           >
-            Exercises
+            Workouts
           </Text>
         </View>
+
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("ExerciseList");
+          }}
+        >
+          <Text> a button</Text>
+        </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>
   );
