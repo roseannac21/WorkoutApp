@@ -17,7 +17,6 @@ const {
 } = require('./controller');
 
 const app = express();
-app.use(cors());
 
 require('dotenv').config({
   path: `${__dirname}/.env.test`,
@@ -36,6 +35,7 @@ database.once('connected', () => {
   console.log('Database Connected');
 });
 
+app.use(cors({origin: true, credentials: true}));
 app.get('/api/users', getUsers);
 app.get('/api/exercises', getExercises);
 app.get('/api/categories', getCategories);
