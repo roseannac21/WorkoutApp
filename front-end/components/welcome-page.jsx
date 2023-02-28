@@ -1,34 +1,111 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, ScrollView, Image, TextInput } from 'react-native';
-import SignUp from './sign-up-button';
+import {
+  SafeAreaView,
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+} from 'react-native';
+import { useEffect, useState } from 'react';
+import { getUsers } from '../utils/api';
 
+const Welcome = ({ navigation }) => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [users, setUsers] = useState('');
+  useEffect(() => {
+    setIsLoading(true);
+    getUsers().then((users) => {
+      setUsers(users);
+    });
+  });
 
-const WelcomePage = () => {
   return (
-  <ScrollView contentContainerStyle={styles.container}>
-  <View style={styles.container}>
-      <Text> START YOUR FITNESS JOURNEY</Text>
-      <Image source={{uri: 'https://www.boris-johnson.org.uk/sites/www.boris-johnson.org.uk/files/2020-08/The%20Gym%20Group.jpg' }}
-      style={{width: 200, height:200}}></Image>
-      <Text> Create an account below and begin your fitness journey...</Text>
-      
-      <SignUp/>
-      
-      <StatusBar style="auto" />
-    
-  
-    </View>
-    </ScrollView>
+    <SafeAreaView
+      style={{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#fff',
+      }}
+    >
+      <View style={{ marginTop: 20 }}>
+        <Text style={{ fontSize: 30, fontWeight: 'bold', color: '#20315f' }}>
+          Welcome
+        </Text>
+      </View>
+      <View
+        style={{
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <Image
+          source={{
+            url: 'https://www.boris-johnson.org.uk/sites/www.boris-johnson.org.uk/files/2020-08/The%20Gym%20Group.jpg',
+          }}
+          style={{
+            width: 400,
+            height: 400,
+          }}
+        />
+      </View>
+      <TouchableOpacity
+        onPress={() =>
+          navigation.navigate('LogIn')
+        }
+        style={{
+          backgroundColor: '#87CEEB',
+          padding: 20,
+          width: '50%',
+          borderRadius: 5,
+          flexDirection: 'row,',
+          alignItems: 'center',
+          marginBottom: 50,
+        }}
+      >
+        <Text
+          style={{
+            fontWeight: 'bold',
+            fontSize: 18,
+            color: '#fff',
+          }}
+        >
+          Log In
+        </Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('SignUp')}
+        style={{
+          backgroundColor: '#87CEEB',
+          padding: 20,
+          width: '50%',
+          borderRadius: 5,
+          flexDirection: 'row,',
+          alignItems: 'center',
+          marginBottom: 50,
+          margin: -25,
+        }}
+      >
+        <Text
+          style={{
+            fontWeight: 'bold',
+            fontSize: 18,
+            color: '#fff',
+          }}
+        >
+          Sign Up
+        </Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate('HomeScreen');
+        }}
+      >
+        <Text>Homescreen Test DELETE</Text>
+      </TouchableOpacity>
+    </SafeAreaView>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  
-});
-export default WelcomePage
+export default Welcome;
