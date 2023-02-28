@@ -1,5 +1,6 @@
-const express = require("express");
-const mongoose = require("mongoose");
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
 const {
   getUsers,
   getExercises,
@@ -13,11 +14,12 @@ const {
   getWorkoutById,
   postWorkout,
   deleteWorkout,
-} = require("./controller");
+} = require('./controller');
 
 const app = express();
+app.use(cors());
 
-require("dotenv").config({
+require('dotenv').config({
   path: `${__dirname}/.env.test`,
 });
 
@@ -26,28 +28,28 @@ const url = process.env.DATABASE_URL;
 mongoose.connect(url);
 const database = mongoose.connection;
 
-database.on("error", (error) => {
+database.on('error', (error) => {
   console.log(error);
 });
 
-database.once("connected", () => {
-  console.log("Database Connected");
+database.once('connected', () => {
+  console.log('Database Connected');
 });
 
-app.get("/api/users", getUsers);
-app.get("/api/exercises", getExercises);
-app.get("/api/categories", getCategories);
-app.get("/api/users/:_id", getUserById);
-app.get("/api/exercises/:_id", getExerciseById);
-app.delete("/api/users/:user_id", deleteUserById);
-app.get("/api/users/:_id/workouts", getWorkouts);
-app.get("/api/users/:user_id/workouts/:workout_id", getWorkoutById);
-app.delete("/api/users/:user_id/workouts/:workout_id", deleteWorkout);
+app.get('/api/users', getUsers);
+app.get('/api/exercises', getExercises);
+app.get('/api/categories', getCategories);
+app.get('/api/users/:_id', getUserById);
+app.get('/api/exercises/:_id', getExerciseById);
+app.delete('/api/users/:user_id', deleteUserById);
+app.get('/api/users/:_id/workouts', getWorkouts);
+app.get('/api/users/:user_id/workouts/:workout_id', getWorkoutById);
+app.delete('/api/users/:user_id/workouts/:workout_id', deleteWorkout);
 
 app.use(express.json());
-app.post("/api/users", postUser);
-app.patch("/api/users/:_id", patchUser);
-app.post("/api/users/:user_id/workouts", postWorkout);
+app.post('/api/users', postUser);
+app.patch('/api/users/:_id', patchUser);
+app.post('/api/users/:user_id/workouts', postWorkout);
 
 app.use((err, req, res, next) => {
   if (err.status) {
@@ -58,24 +60,24 @@ app.use((err, req, res, next) => {
 });
 
 app.use((err, req, res, next) => {
-  if (err.code === "22P02") {
-    res.status(400).send({ msg: "Bad Request" });
+  if (err.code === '22P02') {
+    res.status(400).send({ msg: 'Bad Request' });
   } else {
     next(err);
   }
 });
 
 app.use((err, req, res, next) => {
-  if (err.code === "23502") {
-    res.status(400).send({ msg: "Invalid Patch Request" });
+  if (err.code === '23502') {
+    res.status(400).send({ msg: 'Invalid Patch Request' });
   } else {
     next(err);
   }
 });
 
 app.use((err, req, res, next) => {
-  if (err.code === "23502") {
-    res.status(400).send({ msg: "Invalid Patch Request" });
+  if (err.code === '23502') {
+    res.status(400).send({ msg: 'Invalid Patch Request' });
   } else {
     next(err);
   }
@@ -83,11 +85,11 @@ app.use((err, req, res, next) => {
 
 app.use((err, req, res, next) => {
   console.log(err);
-  res.status(500).send({ msg: "Internal Server Error" });
+  res.status(500).send({ msg: 'Internal Server Error' });
 });
 
 app.listen(3000, () => {
-  console.log("listening");
+  console.log('listening');
 });
 
 module.exports = { app, mongoose };
