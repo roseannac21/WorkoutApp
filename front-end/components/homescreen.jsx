@@ -88,8 +88,24 @@ const HomeScreen = ({ navigation }) => {
           onPress={() => {
             navigation.navigate("ExerciseList");
           }}
+          style={{
+            backgroundColor: "#87CEEB",
+            margin: 5,
+          }}
         >
-          <Text> a button</Text>
+          <Text style={{ color: "#fff" }}> Exercises </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("Workout");
+          }}
+          style={{
+            backgroundColor: "#87CEEB",
+            margin: 5,
+          }}
+        >
+          <Text style={{ color: "#fff" }}> Create a workout </Text>
         </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>
