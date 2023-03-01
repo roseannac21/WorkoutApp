@@ -26,12 +26,18 @@ const ExerciseList = ({ navigation, route }) => {
     return <Text>Warming up...</Text>;
   }
   return (
-    <ScrollView>
+    <ScrollView style={styles.exercises}>
       {exercises.map((exercise) => {
         return <SingleExercise exercise={exercise} key={exercise._id} />;
       })}
     </ScrollView>
   );
 };
+
+const styles = StyleSheet.create({
+  exercises: {
+    backgroundColor: "#ffffff",
+  },
+});
 
 export default ExerciseList;
