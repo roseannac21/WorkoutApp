@@ -5,7 +5,6 @@ const workoutAPI = axios.create({
 });
 
 export const getUsers = () => {
-  // console.log("getting users ...");
   return axios
     .get(`https://workout-app-ix1o.onrender.com/api/users`)
     .then(({ data }) => {
@@ -57,3 +56,19 @@ export const postWorkout = (user_id, name, workout) => {
       console.log(error);
     });
 };
+
+export const getWorkouts = (user_id) => {
+  return workoutAPI
+  .get(`/users/${user_id}/workouts`)
+  .then(({data}) => {
+    return data.workouts
+  })
+}
+
+export const getWorkoutsById = (user_id, workout_id) => {
+  return workoutAPI
+  .get(`/users/${user_id}/workouts/${workout_id}`)
+  .then(({data}) => {
+    return data.workouts
+  })
+}
