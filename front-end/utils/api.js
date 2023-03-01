@@ -1,11 +1,11 @@
 import axios from "axios";
 
 const workoutAPI = axios.create({
-  baseURL: "https://workout-app-ix1o.onrender.com/api",
+  baseURL: 'https://workout-app-ix1o.onrender.com/api',
 });
 
 export const getUsers = () => {
-  // console.log('getting users ...')
+  console.log('getting users ...');
   return axios
     .get(`https://workout-app-ix1o.onrender.com/api/users`)
     .then(({ data }) => {
@@ -25,12 +25,16 @@ export const postUser = (username, password, avatar_url) => {
     password: password,
     avatar_url: avatar_url,
   };
-  return workoutAPI.post(`/users`, postBody);
+  return workoutAPI
+    .post(`/users`, postBody)
+    .catch((error) => {
+      console.log(error);
+    });
 };
 
 export function getAllExercises() {
   return axios
-    .get("https://workout-app-ix1o.onrender.com/api/exercises")
+    .get('https://workout-app-ix1o.onrender.com/api/exercises')
     .then(({ data }) => {
       return data;
     });
