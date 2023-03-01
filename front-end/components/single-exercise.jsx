@@ -7,18 +7,14 @@ import {
   View,
   Button,
 } from "react-native";
-import { useState, useEffect } from "react";
-import { getExerciseById } from "../utils/api";
+import { useState } from "react";
 import { Card } from "react-native-elements";
 
-const SingleExercise = ({ navigation, route }) => {
-  const [singleExercise, setSingleExercise] = useState({});
+const SingleExercise = ({ exercise }) => {
   const [isClicked, setIsClicked] = useState(false);
-  const { exercise } = route.params;
-  console.log(exercise);
 
   return (
-    <Card title="exercise card" key={exercise._id}>
+    <Card title="exercise card" key={exercise._id} style={styles.cardStyle}>
       <Text style={styles.titleText}>{exercise.name}</Text>
       <Text style={styles.subInfo}>Category: {exercise.type}</Text>
       <Text style={styles.subInfo}>Difficulty: {exercise.difficulty}</Text>
@@ -45,6 +41,9 @@ const styles = StyleSheet.create({
     fontWeight: "normal",
     fontSize: "medium",
     textAlign: "center",
+  },
+  cardStyle: {
+    backgroundColor: "#F9C2FF",
   },
 });
 export default SingleExercise;

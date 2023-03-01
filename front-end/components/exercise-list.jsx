@@ -28,22 +28,10 @@ const ExerciseList = ({ navigation, route }) => {
   return (
     <ScrollView>
       {exercises.map((exercise) => {
-        navigation.navigate("SingleExercise", { exercise: exercise });
+        return <SingleExercise exercise={exercise} key={exercise._id} />;
       })}
     </ScrollView>
   );
 };
 
 export default ExerciseList;
-
-// <Button
-//   onPress={() => {
-//     setSingleExerciseId(exercise._id);
-//     console.log(singleExerciseId);
-//     navigation.navigate("SingleExercise", {
-//       id: singleExerciseId,
-//     });
-//   }}
-//   title={exercise.name}
-//   key={exercise.name}
-// />
