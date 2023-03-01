@@ -8,7 +8,8 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-const HomeScreen = ({ navigation }) => {
+const HomeScreen = ({ navigation, route }) => {
+  const { id } = route.params;
   return (
     <SafeAreaView
       style={{
@@ -57,8 +58,8 @@ const HomeScreen = ({ navigation }) => {
 
         <View
           style={{
-            flexDirection: 'row',
-            borderColor: '#C6C6C6',
+            flexDirection: "row",
+            borderColor: "#C6C6C6",
             borderWidth: 1,
             borderRadius: 8,
             paddingHorizontal: 10,
@@ -98,7 +99,7 @@ const HomeScreen = ({ navigation }) => {
 
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate("Workout");
+            navigation.navigate("Workout", { id: id });
           }}
           style={{
             backgroundColor: "#87CEEB",
