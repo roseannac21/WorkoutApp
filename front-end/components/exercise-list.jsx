@@ -9,10 +9,12 @@ import {
 } from "react-native";
 import { getAllExercises } from "../utils/api";
 import { useState, useEffect } from "react";
+import SingleExercise from "./single-exercise";
 const ExerciseList = ({ navigation, route }) => {
   const [exercises, setExercises] = useState([]);
   const [singleExerciseId, setSingleExerciseId] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     setIsLoading(true);
     getAllExercises().then((data) => {
@@ -24,22 +26,18 @@ const ExerciseList = ({ navigation, route }) => {
     return <Text>Warming up...</Text>;
   }
   return (
-    <ScrollView>
+    <ScrollView style={styles.exercises}>
       {exercises.map((exercise) => {
-        return (
-          <Button
-            onPress={() => {
-              setSingleExerciseId(exercise._id);
-              navigation.navigate("SingleExercise", {
-                id: singleExerciseId,
-              });
-            }}
-            title={exercise.name}
-            key={exercise.name}
-          />
-        );
+        return <SingleExercise exercise={exercise} key={exercise._id} />;
       })}
     </ScrollView>
   );
 };
+
+const styles = StyleSheet.create({
+  exercises: {
+    backgroundColor: "#ffffff",
+  },
+});
+
 export default ExerciseList;

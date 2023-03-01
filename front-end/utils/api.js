@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 
 const workoutAPI = axios.create({
   baseURL: 'https://workout-app-ix1o.onrender.com/api',
