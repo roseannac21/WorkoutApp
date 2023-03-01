@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 import {
   SafeAreaView,
   ScrollView,
@@ -6,14 +6,17 @@ import {
   TextInput,
   Text,
   FlatList,
-} from 'react-native';
-import { getAllExercises } from '../utils/api';
-import { Card } from 'react-native-elements';
-import SingleWorkout from './single-workout';
+  TouchableOpacity,
+} from "react-native";
+import { getAllExercises, postWorkout } from "../utils/api";
+import { Card } from "react-native-elements";
+import SingleWorkout from "./single-workout";
 
-const Workout = ({ navigation }) => {
+const Workout = ({ navigation, route }) => {
+  const { id } = route.params;
   const [allExercises, setAllExercises] = useState([]);
-  const [selectedId, setSelectedId] = useState([]);
+  const [selectedExercises, setSelectedExercises] = useState([]);
+  const [workoutName, setWorkoutName] = useState("");
 
   useEffect(() => {
     async function fetchData() {
@@ -23,15 +26,27 @@ const Workout = ({ navigation }) => {
     fetchData();
   }, []);
 
+  // console.log(selectedExercises);
+  // console.log(workoutName);
   const renderItem = ({ item }) => {
-    const backgroundColor = item._id === selectedId ? '#6E3B6E' : '#F9C2FF';
-    const color = item._id === selectedId ? '#fff' : '#000';
+    const backgroundColor = selectedExercises.includes(item.name)
+      ? "#6E3B6E"
+      : "#F9C2FF";
+    const color = selectedExercises.includes(item.name) ? "#fff" : "#000";
 
     return (
       <SingleWorkout
         item={item}
         onPress={() => {
-          setSelectedId(item._id);
+          setSelectedExercises((currExercises) => {
+            if (currExercises.includes(item.name)) {
+              const index = currExercises.indexOf(item.name);
+              currExercises.splice(index, 1);
+              return [...currExercises];
+            } else {
+              return [...currExercises, item.name];
+            }
+          });
         }}
         backgroundColor={backgroundColor}
         textColor={color}
@@ -43,20 +58,22 @@ const Workout = ({ navigation }) => {
     <SafeAreaView
       style={{
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: "#fff",
+        flexDirection: "column",
+        justifyContent: "center",
       }}
     >
       <View
         style={{
-          flexDirection: 'row',
-          justifyContent: 'center',
+          flexDirection: "row",
+          justifyContent: "center",
           margin: 10,
         }}
       >
-        <View style={{ flexDirection: 'column' }}>
+        <View style={{ flexDirection: "column" }}>
           <Text
             style={{
-              fontWeight: 'bold',
+              fontWeight: "bold",
               fontSize: 20,
               marginBottom: 20,
             }}
@@ -65,9 +82,12 @@ const Workout = ({ navigation }) => {
           </Text>
           <TextInput
             style={{
-              borderColor: '#C6C6C6',
+              borderColor: "#C6C6C6",
               borderWidth: 0.5,
-              textAlign: 'center'
+              textAlign: "center",
+            }}
+            onChangeText={(workout) => {
+              setWorkoutName(workout);
             }}
             placeholder="Name your workout"
           ></TextInput>
@@ -77,9 +97,38 @@ const Workout = ({ navigation }) => {
       <FlatList
         data={allExercises}
         renderItem={renderItem}
-        keyExtractor={(item) => item._id}
-        extraData={selectedId}
+        keyExtractor={(item) => item.name}
+        extraData={selectedExercises}
       ></FlatList>
+
+      <TouchableOpacity
+        style={{
+          backgroundColor: "#87CEEB",
+          padding: 5,
+          borderRadius: 10,
+          margin: 15,
+          // height: 50,
+        }}
+        onPress={() => {
+          const postWorkoutBody = [];
+          selectedExercises.forEach((ex) => {
+            postWorkoutBody.push({ exercise: ex });
+          });
+          postWorkout(id, workoutName, postWorkoutBody);
+          navigation.goBack(null);
+        }}
+      >
+        <Text
+          style={{
+            textAlign: "center",
+            fontWeight: "bold",
+            fontSize: 22,
+            color: "#fff",
+          }}
+        >
+          Save
+        </Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };

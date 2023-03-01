@@ -9,7 +9,7 @@ import {
 } from "react-native";
 
 const HomeScreen = ({ navigation, route }) => {
-  const { user, users } = route.params;
+  const { user, users, id } = route.params;
 
   const loggedInUser = users.filter((potentialUser) => {
     if (potentialUser.username === user) {
@@ -81,7 +81,7 @@ const HomeScreen = ({ navigation, route }) => {
 
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate("Workout");
+            navigation.navigate("Workout", { id: id });
           }}
           style={{
             backgroundColor: "#87CEEB",

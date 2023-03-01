@@ -121,7 +121,7 @@ const Login = ({ navigation, route }) => {
               correctUser.username === user &&
               correctUser.password === pass
             ) {
-              navigation.navigate("HomeScreen", { user: user, users: users });
+              navigation.navigate("HomeScreen", { user: user, users: users, id: correctUser._id });
             } else {
               alert("Username or Password not recognised!");
             }
