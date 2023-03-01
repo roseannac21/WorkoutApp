@@ -30,13 +30,24 @@ export const postUser = (username, password, avatar_url) => {
   });
 };
 
-export function getAllExercises() {
-  return axios
-    .get("https://workout-app-ix1o.onrender.com/api/exercises")
-    .then(({ data }) => {
-      return data;
-    });
+export function getAllExercises(filter = "") {
+  if (filter === "") {
+    return axios
+      .get("https://workout-app-ix1o.onrender.com/api/exercises")
+      .then(({ data }) => {
+        return data;
+      });
+  } else if (filter !== "") {
+    return axios
+      .get(
+        `https://workout-app-ix1o.onrender.com/api/exercises?difficulty=${filter}`
+      )
+      .then(({ data }) => {
+        return data;
+      });
+  }
 }
+
 export function getExerciseById(id) {
   return axios
     .get(`https://workout-app-ix1o.onrender.com/api/exercises/${id}`)
