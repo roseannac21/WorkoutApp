@@ -69,6 +69,6 @@ export const getWorkoutsById = (user_id, workout_id) => {
   return workoutAPI
   .get(`/users/${user_id}/workouts/${workout_id}`)
   .then(({data}) => {
-    return data.workouts
+    return data.workout
   })
 }
