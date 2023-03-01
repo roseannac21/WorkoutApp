@@ -199,7 +199,7 @@ const getWorkouts = (req, res, next) => {
         if (response.length === 0) {
           return res.status(404).send({ msg: "Bad request: ID doesn't exist" });
         }
-        res.status(200).send({ workouts: response[0] });
+        res.status(200).send({ workouts: response });
       });
   } else
     return Promise.reject({
