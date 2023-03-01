@@ -21,13 +21,33 @@ export default function App() {
           name="Welcome"
           options={{ headerShown: false }}
         />
-        <Stack.Screen component={Login} name="LogIn" />
-        <Stack.Screen component={HomeScreen} name="HomeScreen" />
-        <Stack.Screen component={SignUp} name="SignUp" />
-        <Stack.Screen component={User} name="User" />
-        <Stack.Screen component={ExerciseList} name="ExerciseList" />
-        <Stack.Screen component={SingleExercise} name="SingleExercise" />
-        <Stack.Screen component={Workout} name="Workout" />
+        <Stack.Screen component={Login} name="LogIn" options={{ title: "" }} />
+        <Stack.Screen
+          component={HomeScreen}
+          name="HomeScreen"
+          options={{ title: "" }}
+        />
+        <Stack.Screen
+          component={SignUp}
+          name="SignUp"
+          options={{ title: "" }}
+        />
+        <Stack.Screen component={User} name="User" options={{ title: "" }} />
+        <Stack.Screen
+          component={ExerciseList}
+          name="ExerciseList"
+          options={{ title: "" }}
+        />
+        <Stack.Screen
+          component={SingleExercise}
+          name="SingleExercise"
+          options={{ title: "" }}
+        />
+        <Stack.Screen
+          component={Workout}
+          name="Workout"
+          options={{ title: "" }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
