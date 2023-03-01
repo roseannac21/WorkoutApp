@@ -29,7 +29,7 @@ const HomeScreen = ({ navigation, route }) => {
       setWorkoutList(fetchedWorkouts);
     }
     fetchData();
-  }, []);
+  }, [workoutList]);
 
   useEffect(() => {
     if(workoutId) {
