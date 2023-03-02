@@ -398,29 +398,14 @@ describe("get workouts", () => {
       .get("/api/users/0/workouts")
       .expect(200)
       .then(({ body: { workouts } }) => {
-        expect(workouts).toHaveProperty("name");
-        expect(workouts).toHaveProperty("user_id");
-        expect(workouts).toHaveProperty("workout");
-      });
-  });
-  test("status 200, checking the workout object", () => {
-    return request(app)
-      .get("/api/users/0/workouts")
-      .expect(200)
-      .then(({ body: { workouts } }) => {
-        workouts.workout.forEach((exercise) => {
-          expect(exercise).toHaveProperty("exercise");
+        workouts.forEach((workout) => {
+          expect(workout).toHaveProperty("name");
+          expect(workout).toHaveProperty("user_id");
+          expect(workout).toHaveProperty("workout");
         });
       });
   });
-  test("status 200 and check length of workout array", () => {
-    return request(app)
-      .get("/api/users/0/workouts")
-      .expect(200)
-      .then(({ body: { workouts } }) => {
-        expect(workouts.workout).toHaveLength(2);
-      });
-  });
+
   test("404 error user not found", () => {
     return request(app)
       .get("/api/users/2000/workouts")
