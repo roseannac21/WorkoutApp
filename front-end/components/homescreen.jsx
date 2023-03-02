@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useState } from "react";
+import { useEffect } from "react";
 import {
   View,
   Text,
@@ -8,9 +8,9 @@ import {
   Image,
   TouchableOpacity,
   FlatList,
-} from 'react-native';
-import { getWorkouts } from '../utils/api';
-import WorkoutList from './workout-list';
+} from "react-native";
+import { getWorkouts } from "../utils/api";
+import WorkoutList from "./workout-list";
 
 const HomeScreen = ({ navigation, route }) => {
   const { user, users, id } = route.params;
@@ -33,12 +33,20 @@ const HomeScreen = ({ navigation, route }) => {
 
   useEffect(() => {
     if (workoutId) {
-      navigation.navigate('ViewWorkout', {
+      navigation.navigate("ViewWorkout", {
         workoutID: workoutId,
         userId: id,
       });
     }
   }, [workoutId]);
+
+  useEffect(() => {
+    const resetWorkoutIdState = navigation.addListener("focus", () => {
+      setWorkoutId(null);
+    });
+    return resetWorkoutIdState;
+  }, [navigation]);
+
 
   const renderItem = ({ item }) => {
     return (
@@ -55,6 +63,7 @@ const HomeScreen = ({ navigation, route }) => {
       style={{
         flex: 1,
         backgroundColor: '#F9C2FF',
+
       }}
     >
       <ScrollView
@@ -65,16 +74,16 @@ const HomeScreen = ({ navigation, route }) => {
       >
         <View
           style={{
-            alignItems: 'center',
-            justifyContent: 'center',
-            flexDirection: 'column',
+            alignItems: "center",
+            justifyContent: "center",
+            flexDirection: "column",
             marginBottom: 20,
           }}
         >
           <Text
             style={{
               fontSize: 18,
-              fontWeight: 'bold',
+              fontWeight: "bold",
               padding: 30,
             }}
           >
@@ -88,22 +97,22 @@ const HomeScreen = ({ navigation, route }) => {
               width: 200,
               height: 200,
               borderRadius: 25,
-              backgroundColor: '#0000',
+              backgroundColor: "#0000",
             }}
           />
         </View>
 
         <View
           style={{
-            flexDirection: 'row',
-            justifyContent: 'center',
+            flexDirection: "row",
+            justifyContent: "center",
             marginVertical: 15,
           }}
         ></View>
 
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate('ExerciseList');
+            navigation.navigate("ExerciseList");
           }}
           style={{
             backgroundColor: '#6E3B6E',
@@ -128,7 +137,7 @@ const HomeScreen = ({ navigation, route }) => {
 
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate('Workout', { id: id });
+            navigation.navigate("Workout", { id: id });
           }}
           style={{
             backgroundColor: '#6E3B6E',
@@ -149,6 +158,7 @@ const HomeScreen = ({ navigation, route }) => {
             {' '}
             Create a New Workout{' '}
           </Text>
+
         </TouchableOpacity>
 
         <View

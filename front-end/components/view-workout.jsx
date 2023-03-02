@@ -6,7 +6,8 @@ import ExerciseInWorkout from './exercise-in-workout';
 
 const ViewWorkout = ({ route }) => {
   const [workoutById, setWorkoutById] = useState([]);
-  console.log(workoutById, '<-- WRKOUT');
+ 
+
 
   const { workoutID, userId } = route.params;
   useEffect(() => {
