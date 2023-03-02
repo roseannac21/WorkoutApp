@@ -32,20 +32,20 @@ const HomeScreen = ({ navigation, route }) => {
   }, [workoutList]);
 
   useEffect(() => {
-    if(workoutId) {
-    navigation.navigate('ViewWorkout', {
-      workoutID: workoutId,
-      userId: id
-    })
-  }
-  }, [workoutId])
+    if (workoutId) {
+      navigation.navigate('ViewWorkout', {
+        workoutID: workoutId,
+        userId: id,
+      });
+    }
+  }, [workoutId]);
 
   const renderItem = ({ item }) => {
     return (
       <WorkoutList
         item={item}
         onPress={() => {
-          setWorkoutId(item._id)
+          setWorkoutId(item._id);
         }}
       />
     );
@@ -54,7 +54,7 @@ const HomeScreen = ({ navigation, route }) => {
     <SafeAreaView
       style={{
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#F9C2FF',
       }}
     >
       <ScrollView
@@ -106,11 +106,24 @@ const HomeScreen = ({ navigation, route }) => {
             navigation.navigate('ExerciseList');
           }}
           style={{
-            backgroundColor: '#87CEEB',
+            backgroundColor: '#6E3B6E',
+            padding: 20,
+            borderRadius: 10,
+            marginBottom: 30,
             margin: 5,
           }}
         >
-          <Text style={{ color: '#fff' }}> Exercises </Text>
+          <Text
+            style={{
+              color: '#fff',
+              fontWeight: 'bold',
+              fontSize: 16,
+              textAlign: 'center',
+            }}
+          >
+            {' '}
+            View All Exercises{' '}
+          </Text>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -118,12 +131,44 @@ const HomeScreen = ({ navigation, route }) => {
             navigation.navigate('Workout', { id: id });
           }}
           style={{
-            backgroundColor: '#87CEEB',
+            backgroundColor: '#6E3B6E',
+            padding: 20,
+            borderRadius: 10,
+            marginBottom: 30,
             margin: 5,
           }}
         >
-          <Text style={{ color: '#fff' }}> Create a new workout </Text>
+          <Text
+            style={{
+              color: '#fff',
+              fontWeight: 'bold',
+              fontSize: 16,
+              textAlign: 'center',
+            }}
+          >
+            {' '}
+            Create a New Workout{' '}
+          </Text>
         </TouchableOpacity>
+
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'center',
+          }}
+        >
+          <Text
+            style={{
+              fontWeight: 'bold',
+              textAlign: 'center',
+              fontSize: 20,
+              textDecorationLine: 'underline',
+              marginBottom: 20
+            }}
+          >
+            Previous Workouts
+          </Text>
+        </View>
         <FlatList
           scrollEnabled={false}
           data={workoutList}

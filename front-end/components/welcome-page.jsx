@@ -13,12 +13,23 @@ const Welcome = ({ navigation }) => {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#fff',
+        backgroundColor: '#F9C2FF',
       }}
     >
       <View style={{ marginTop: 20 }}>
         <Text style={{ fontSize: 30, fontWeight: 'bold', color: '#20315f' }}>
-          Welcome
+          GET YOURSELF MOVING
+        </Text>
+        <Text
+          style={{
+            fontSize: 20,
+            fontWeight: 'bold',
+            color: '#20315f',
+            textAlign: 'center',
+            marginTop: 15,
+          }}
+        >
+          (G.Y.M)
         </Text>
       </View>
       <View
@@ -30,7 +41,7 @@ const Welcome = ({ navigation }) => {
       >
         <Image
           source={{
-            url: 'https://www.boris-johnson.org.uk/sites/www.boris-johnson.org.uk/files/2020-08/The%20Gym%20Group.jpg',
+            url: 'https://t4.ftcdn.net/jpg/02/43/13/15/360_F_243131531_jmNppYX9Ux2Hj2RV9yYR1swicwcYr8EQ.jpg',
           }}
           style={{
             width: 400,
@@ -39,11 +50,9 @@ const Welcome = ({ navigation }) => {
         />
       </View>
       <TouchableOpacity
-        onPress={() =>
-          navigation.navigate('LogIn')
-        }
+        onPress={() => navigation.navigate('LogIn')}
         style={{
-          backgroundColor: '#87CEEB',
+          backgroundColor: '#6E3B6E',
           padding: 20,
           width: '50%',
           borderRadius: 5,
@@ -65,7 +74,7 @@ const Welcome = ({ navigation }) => {
       <TouchableOpacity
         onPress={() => navigation.navigate('SignUp')}
         style={{
-          backgroundColor: '#87CEEB',
+          backgroundColor: '#6E3B6E',
           padding: 20,
           width: '50%',
           borderRadius: 5,
@@ -84,13 +93,6 @@ const Welcome = ({ navigation }) => {
         >
           Sign Up
         </Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => {
-          navigation.navigate('HomeScreen');
-        }}
-      >
-        <Text>Homescreen Test DELETE</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );

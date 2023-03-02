@@ -27,8 +27,8 @@ const Login = ({ navigation, route }) => {
     <SafeAreaView
       style={{
         flex: 1,
-        backgroundColor: "#fff",
-        justifyContent: "center",
+        backgroundColor: '#F9C2FF',
+        justifyContent: 'center',
       }}
     >
       <ScrollView
@@ -38,12 +38,12 @@ const Login = ({ navigation, route }) => {
       >
         <View
           style={{
-            justifyContent: "center",
+            justifyContent: 'center',
           }}
         >
           <Image
             source={{
-              uri: "https://c4.wallpaperflare.com/wallpaper/695/308/1005/d-grass-paw-caine-wallpaper-preview.jpg",
+              uri: 'https://c4.wallpaperflare.com/wallpaper/695/308/1005/d-grass-paw-caine-wallpaper-preview.jpg',
             }}
             style={{
               width: 375,
@@ -53,15 +53,15 @@ const Login = ({ navigation, route }) => {
         </View>
         <View
           style={{
-            flexDirection: "row",
-            justifyContent: "center",
+            flexDirection: 'row',
+            justifyContent: 'center',
             marginBottom: 20,
           }}
         >
           <Text
             style={{
               fontSize: 18,
-              fontWeight: "bold",
+              fontWeight: 'bold',
               paddingVertical: 20,
             }}
           >
@@ -71,16 +71,18 @@ const Login = ({ navigation, route }) => {
 
         <View
           style={{
-            flexDirection: "row",
-            borderColor: "#C6C6C6",
+            flexDirection: 'row',
+            borderColor: '#C6C6C6',
             borderWidth: 1,
             paddingHorizontal: 10,
             paddingVertical: 8,
             margin: 10,
+            backgroundColor: '#fff',
           }}
         >
           <TextInput
             placeholder="Username"
+            placeholderTextColor={'#000'}
             onChangeText={(text) => setUser(text)}
             style={{
               flex: 1,
@@ -92,16 +94,18 @@ const Login = ({ navigation, route }) => {
 
         <View
           style={{
-            flexDirection: "row",
-            borderColor: "#C6C6C6",
+            flexDirection: 'row',
+            borderColor: '#C6C6C6',
             borderWidth: 1,
             paddingHorizontal: 10,
             paddingVertical: 8,
             margin: 10,
+            backgroundColor: '#fff',
           }}
         >
           <TextInput
             placeholder="Password"
+            placeholderTextColor={'#000'}
             onChangeText={(text) => setPass(text)}
             style={{
               flex: 1,
@@ -121,13 +125,17 @@ const Login = ({ navigation, route }) => {
               correctUser.username === user &&
               correctUser.password === pass
             ) {
-              navigation.navigate("HomeScreen", { user: user, users: users, id: correctUser._id });
+              navigation.navigate('HomeScreen', {
+                user: user,
+                users: users,
+                id: correctUser._id,
+              });
             } else {
-              alert("Username or Password not recognised!");
+              alert('Username or Password not recognised!');
             }
           }}
           style={{
-            backgroundColor: "#87CEEB",
+            backgroundColor: '#6E3B6E',
             padding: 20,
             borderRadius: 10,
             marginBottom: 30,
@@ -136,10 +144,10 @@ const Login = ({ navigation, route }) => {
         >
           <Text
             style={{
-              textAlign: "center",
-              fontWeight: "bold",
+              textAlign: 'center',
+              fontWeight: 'bold',
               fontSize: 18,
-              color: "#fff",
+              color: '#fff',
             }}
           >
             Sign In
@@ -148,8 +156,8 @@ const Login = ({ navigation, route }) => {
         <View>
           <Text
             style={{
-              textAlign: "center",
-              color: "#666",
+              textAlign: 'center',
+              color: '#000',
               marginTop: 20,
               marginBottom: 40,
             }}
@@ -160,10 +168,10 @@ const Login = ({ navigation, route }) => {
 
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate("SignUp");
+            navigation.navigate('SignUp');
           }}
           style={{
-            backgroundColor: "#87CEEB",
+            backgroundColor: '#6E3B6E',
             padding: 20,
             borderRadius: 10,
             marginBottom: 30,
@@ -172,10 +180,10 @@ const Login = ({ navigation, route }) => {
         >
           <Text
             style={{
-              textAlign: "center",
-              fontWeight: "bold",
+              textAlign: 'center',
+              fontWeight: 'bold',
               fontSize: 18,
-              color: "#fff",
+              color: '#fff',
             }}
           >
             Sign Up

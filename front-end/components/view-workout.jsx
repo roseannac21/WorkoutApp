@@ -1,37 +1,51 @@
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { FlatList, Text, SafeAreaView } from 'react-native';
+import { FlatList, Text, SafeAreaView, StyleSheet, View } from 'react-native';
 import { getWorkoutsById } from '../utils/api';
 import ExerciseInWorkout from './exercise-in-workout';
 
 const ViewWorkout = ({ route }) => {
   const [workoutById, setWorkoutById] = useState([]);
-  console.log(workoutById.workout, '<-- WRKOUT');
+  console.log(workoutById, '<-- WRKOUT');
 
   const { workoutID, userId } = route.params;
-  console.log(workoutID, '<- W ID');
-  console.log(userId, '<- U ID');
   useEffect(() => {
     async function fetchData() {
-      const fetchedWorkoutsById = await getWorkoutsById(userId, workoutID);
-      setWorkoutById(fetchedWorkoutsById);
+      const fetchWorkoutsById = await getWorkoutsById(userId, workoutID);
+      setWorkoutById(fetchWorkoutsById);
     }
     fetchData();
   }, []);
 
-  const renderExercise = ({item}) => {
-    return <ExerciseInWorkout item={item}/>;
+  const renderExercise = ({ item }) => {
+    return <ExerciseInWorkout item={item} />;
   };
 
   return (
     <SafeAreaView>
-      <Text>Workout Name: {workoutById.name}</Text>
-      <FlatList
-        data={workoutById.workout}
-        renderItem={renderExercise}
-      ></FlatList>
+      <View style={[styles.background]}>
+        <Text style={[styles.title]}>{workoutById.name}</Text>
+        <FlatList
+          data={workoutById.workout}
+          renderItem={renderExercise}
+        ></FlatList>
+      </View>
     </SafeAreaView>
   );
 };
 
+const styles = StyleSheet.create({
+  background: {
+    backgroundColor: '#F9C2FF',
+    height: '100%',
+  },
+  title: {
+    fontSize: 25,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    backgroundColor: '#6E3B6E',
+    color: '#fff',
+    padding: 25,
+  },
+});
 export default ViewWorkout;

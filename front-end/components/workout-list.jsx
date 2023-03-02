@@ -1,28 +1,30 @@
 import { Text, StyleSheet, TouchableOpacity, View } from 'react-native';
-import { StatusBar } from 'expo-status-bar';
 
-const WorkoutList = ({ item, onPress, textColor }) => (
-  <TouchableOpacity onPress={ onPress } style={[styles.item]}>
-    <View>
-      <Text style={[styles.title, { color: textColor }]}>{item.name}</Text>
-    </View>
-  </TouchableOpacity>
+const WorkoutList = ({ item, onPress }) => (
+  <View style={[styles.container]}>
+    <TouchableOpacity onPress={onPress} style={[styles.item]}>
+      <View>
+        <Text style={[styles.title, { color: '#fff', textAlign: 'center' }]}>
+          {item.name}
+        </Text>
+      </View>
+    </TouchableOpacity>
+  </View>
 );
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    marginTop: StatusBar.currentHeight || 0,
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
   },
   item: {
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
+    backgroundColor: '#6E3B6E',
+    padding: 10,
+    borderRadius: 5,
+    marginBottom: 25,
+    width: '60%',
   },
   title: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    marginBottom: 10,
+    fontSize: 16,
   },
   text: {
     fontSize: 16,
@@ -36,7 +38,7 @@ const styles = StyleSheet.create({
   },
   inline: {
     flexDirection: 'column',
-    justifyContent: 'flex-start',
+    justifyContent: 'space-between',
   },
   spaceBetween: {
     flexDirection: 'row',

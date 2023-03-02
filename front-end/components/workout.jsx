@@ -58,38 +58,39 @@ const Workout = ({ navigation, route }) => {
     <SafeAreaView
       style={{
         flex: 1,
-        backgroundColor: "#fff",
-        flexDirection: "column",
-        justifyContent: "center",
+        backgroundColor: '#fff',
+        flexDirection: 'column',
+        justifyContent: 'center',
       }}
     >
       <View
         style={{
-          flexDirection: "row",
-          justifyContent: "center",
+          flexDirection: 'row',
+          justifyContent: 'center',
           margin: 10,
         }}
       >
-        <View style={{ flexDirection: "column" }}>
+        <View style={{ flexDirection: 'column' }}>
           <Text
             style={{
-              fontWeight: "bold",
+              fontWeight: 'bold',
               fontSize: 20,
               marginBottom: 20,
             }}
           >
-            Name Your Workout
+            Give Your Workout a Name
           </Text>
           <TextInput
             style={{
-              borderColor: "#C6C6C6",
+              borderColor: '#000',
               borderWidth: 0.5,
-              textAlign: "center",
+              textAlign: 'center',
             }}
             onChangeText={(workout) => {
               setWorkoutName(workout);
             }}
             placeholder="Name your workout"
+            placeholderTextColor={"#000"}
           ></TextInput>
         </View>
       </View>
@@ -103,7 +104,7 @@ const Workout = ({ navigation, route }) => {
 
       <TouchableOpacity
         style={{
-          backgroundColor: "#87CEEB",
+          backgroundColor: '#6E3B6E',
           padding: 5,
           borderRadius: 10,
           margin: 15,
@@ -119,10 +120,10 @@ const Workout = ({ navigation, route }) => {
       >
         <Text
           style={{
-            textAlign: "center",
-            fontWeight: "bold",
+            textAlign: 'center',
+            fontWeight: 'bold',
             fontSize: 22,
-            color: "#fff",
+            color: '#fff',
           }}
         >
           Save
