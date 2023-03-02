@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const AutoIncrementFactory = require("mongoose-sequence");
 
 require("dotenv").config({
-  path: `${__dirname}/.env.dev`,
+  path: `${__dirname}/.env.test`,
 });
 
 const url = process.env.DATABASE_URL;
