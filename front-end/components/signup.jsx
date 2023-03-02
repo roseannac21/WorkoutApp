@@ -18,7 +18,7 @@ const SignUp = ({ navigation }) => {
     <SafeAreaView
       style={{
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#F9C2FF',
         justifyContent: 'center',
       }}
     >
@@ -68,6 +68,7 @@ const SignUp = ({ navigation }) => {
             paddingHorizontal: 10,
             paddingVertical: 8,
             margin: 10,
+            backgroundColor: '#fff',
           }}
         >
           <TextInput
@@ -75,6 +76,7 @@ const SignUp = ({ navigation }) => {
               setNewUser(user);
             }}
             placeholder="Username"
+            placeholderTextColor={'#000'}
             style={{
               flex: 1,
               paddingVertical: 0,
@@ -91,6 +93,7 @@ const SignUp = ({ navigation }) => {
             paddingHorizontal: 10,
             paddingVertical: 8,
             margin: 10,
+            backgroundColor: '#fff',
           }}
         >
           <TextInput
@@ -98,6 +101,7 @@ const SignUp = ({ navigation }) => {
               setNewPassword(password);
             }}
             placeholder="Password"
+            placeholderTextColor={'#000'}
             style={{
               flex: 1,
               paddingVertical: 0,
@@ -114,6 +118,7 @@ const SignUp = ({ navigation }) => {
             paddingHorizontal: 10,
             paddingVertical: 8,
             margin: 10,
+            backgroundColor: '#fff',
           }}
         >
           <TextInput
@@ -121,6 +126,7 @@ const SignUp = ({ navigation }) => {
               setNewAvatar(avatar);
             }}
             placeholder="Avatar URL"
+            placeholderTextColor={'#000'}
             style={{
               flex: 1,
               paddingVertical: 0,
@@ -132,12 +138,12 @@ const SignUp = ({ navigation }) => {
         <TouchableOpacity
           title="Submit"
           onPress={() => {
-            postUser(newUser, newPassword, newAvatar)
-            alert('Thank you for signing up!')
-            navigation.navigate('LogIn')
+            postUser(newUser, newPassword, newAvatar);
+            alert('Thank you for signing up!');
+            navigation.navigate('LogIn');
           }}
           style={{
-            backgroundColor: '#87CEEB',
+            backgroundColor: '#6E3B6E',
             padding: 20,
             borderRadius: 10,
             marginBottom: 30,
@@ -159,18 +165,19 @@ const SignUp = ({ navigation }) => {
           <Text
             style={{
               textAlign: 'center',
-              color: '#666',
+              color: '#000',
               marginTop: 20,
               marginBottom: 40,
             }}
           >
-            Already have an account? Sign in below
+            Already have an account? Log in below
           </Text>
         </View>
 
         <TouchableOpacity
+        onPress={() => navigation.navigate("LogIn")}
           style={{
-            backgroundColor: '#87CEEB',
+            backgroundColor: '#6E3B6E',
             padding: 20,
             borderRadius: 10,
             marginBottom: 30,
