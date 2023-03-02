@@ -31,7 +31,7 @@ const exercises = [
     name: "EZ-Bar Curl",
     type: "strength",
     muscle: "biceps",
-    equipment: "e-z_curl_bar",
+    equipment: "e-z curl bar",
     difficulty: "intermediate",
     instructions:
       "Stand up straight while holding an EZ curl bar at the wide outer handle. The palms of your hands should be facing forward and slightly tilted inward due to the shape of the bar. Keep your elbows close to your torso. This will be your starting position. Now, while keeping your upper arms stationary, exhale and curl the weights forward while contracting the biceps. Focus on only moving your forearms. Continue to raise the weight until your biceps are fully contracted and the bar is at shoulder level. Hold the top contracted position for a moment and squeeze the biceps. Then inhale and slowly lower the bar back to the starting position. Repeat for the recommended amount of repetitions.  Variations: You can also perform this movement using an E-Z attachment hooked to a low pulley. This variation seems to really provide a good contraction at the top of the movement. You may also use the closer grip for variety purposes.",
@@ -76,7 +76,7 @@ const exercises = [
     name: "Elbow plank",
     type: "strength",
     muscle: "abdominals",
-    equipment: "body_only",
+    equipment: "body only",
     difficulty: "intermediate",
     instructions:
       "Get into a prone position on the floor, supporting your weight on your toes and your forearms. Your arms are bent and directly below the shoulder. Keep your body straight at all times, and hold this position as long as possible. To increase difficulty, an arm or leg can be raised.",
@@ -85,7 +85,7 @@ const exercises = [
     name: "Bottoms Up",
     type: "strength",
     muscle: "abdominals",
-    equipment: "body_only",
+    equipment: "body only",
     difficulty: "intermediate",
     instructions:
       "Begin by lying on your back on the ground. Your legs should be straight and your arms at your side. This will be your starting position. To perform the movement, tuck the knees toward your chest by flexing the hips and knees. Following this, extend your legs directly above you so that they are perpendicular to the ground. Rotate and elevate your pelvis to raise your glutes from the floor. After a brief pause, return to the starting position.",
@@ -139,7 +139,7 @@ const exercises = [
     name: "Spider crawl",
     type: "strength",
     muscle: "abdominals",
-    equipment: "body_only",
+    equipment: "body only",
     difficulty: "intermediate",
     instructions:
       "Begin in a prone position on the floor. Support your weight on your hands and toes, with your feet together and your body straight. Your arms should be bent to 90 degrees. This will be your starting position. Initiate the movement by raising one foot off of the ground. Externally rotate the leg and bring the knee toward your elbow, as far forward as possible. Return this leg to the starting position and repeat on the opposite side.",
@@ -148,7 +148,7 @@ const exercises = [
     name: "Cocoons",
     type: "strength",
     muscle: "abdominals",
-    equipment: "body_only",
+    equipment: "body only",
     difficulty: "intermediate",
     instructions:
       "Begin by lying on your back on the ground. Your legs should be straight and your arms extended behind your head. This will be your starting position. To perform the movement, tuck the knees toward your chest, rotating your pelvis to lift your glutes from the floor. As you do so, flex the spine, bringing your arms back over your head to perform a simultaneous crunch motion. After a brief pause, return to the starting position.",
@@ -256,7 +256,7 @@ const exercises = [
     name: "Pushups",
     type: "strength",
     muscle: "chest",
-    equipment: "body_only",
+    equipment: "body only",
     difficulty: "intermediate",
     instructions:
       "Lie on the floor face down and place your hands about 36 inches apart while holding your torso up at arms length. Next, lower yourself downward until your chest almost touches the floor as you inhale. Now breathe out and press your upper body back up to the starting position while squeezing your chest. After a brief pause at the top contracted position, you can begin to lower yourself downward again for as many repetitions as needed.  Variations: If you are new at this exercise and do not have the strength to perform it, you can either bend your legs at the knees to take off resistance or perform the exercise against the wall instead of the floor. For the most advanced lifters, you can place your feet at a high surface such as a bench in order to increase the resistance and to target the upper chest more.",
@@ -328,7 +328,7 @@ const exercises = [
     name: "Bodyweight Flyes",
     type: "strength",
     muscle: "chest",
-    equipment: "e-z_curl_bar",
+    equipment: "e-z curl bar",
     difficulty: "beginner",
     instructions:
       "Position two equally loaded EZ bars on the ground next to each other. Ensure they are able to roll. Assume a push-up position over the bars, supporting your weight on your toes and hands with your arms extended and body straight. Place your hands on the bars. This will be your starting position. Using a slow and controlled motion, move your hands away from the midline of your body, rolling the bars apart. Inhale during this portion of the motion. After moving the bars as far apart as you can, return to the starting position by pulling them back together. Exhale as you perform this movement.",
@@ -346,7 +346,7 @@ const exercises = [
     name: "Glute bridge",
     type: "strength",
     muscle: "glutes",
-    equipment: "body_only",
+    equipment: "body only",
     difficulty: "intermediate",
     instructions:
       "Lie flat on the floor on your back with the hands by your side and your knees bent. Your feet should be placed around shoulder width. This will be your starting position. Pushing mainly with your heels, lift your hips off the floor while keeping your back straight. Breathe out as you perform this part of the motion and hold at the top for a second. Slowly go back to the starting position as you breathe in.  Variations: You can perform this exercise one leg at a time.",
@@ -355,7 +355,7 @@ const exercises = [
     name: "Single-leg glute bridge",
     type: "strength",
     muscle: "glutes",
-    equipment: "body_only",
+    equipment: "body only",
     difficulty: "intermediate",
     instructions:
       "Lay on the floor with your feet flat and knees bent. Raise one leg off of the ground, pulling the knee to your chest. This will be your starting position. Execute the movement by driving through the heel, extending your hip upward and raising your glutes off of the ground. Extend as far as possible, pause and then return to the starting position.",
@@ -364,7 +364,7 @@ const exercises = [
     name: "Step-up with knee raise",
     type: "strength",
     muscle: "glutes",
-    equipment: "body_only",
+    equipment: "body only",
     difficulty: "intermediate",
     instructions:
       "Stand facing a box or bench of an appropriate height with your feet together. This will be your starting position. Begin the movement by stepping up, putting your left foot on the top of the bench. Extend through the hip and knee of your front leg to stand up on the box. As you stand on the box with your left leg, flex your right knee and hip, bringing your knee as high as you can. Reverse this motion to step down off the box, and then repeat the sequence on the opposite leg.",
@@ -391,7 +391,7 @@ const exercises = [
     name: "Glute Kickback",
     type: "strength",
     muscle: "glutes",
-    equipment: "body_only",
+    equipment: "body only",
     difficulty: "beginner",
     instructions:
       "Kneel on the floor or an exercise mat and bend at the waist with your arms extended in front of you (perpendicular to the torso) in order to get into a kneeling push-up position but with the arms spaced at shoulder width. Your head should be looking forward and the bend of the knees should create a 90-degree angle between the hamstrings and the calves. This will be your starting position. As you exhale, lift up your right leg until the hamstrings are in line with the back while maintaining the 90-degree angle bend. Contract the glutes throughout this movement and hold the contraction at the top for a second. Tip: At the end of the movement the upper leg should be parallel to the floor while the calf should be perpendicular to it. Go back to the initial position as you inhale and now repeat with the left leg. Continue to alternate legs until all of the recommended repetitions have been performed.  Variations: For this exercise you can also perform all of the repetitions with one leg first and then the other one. Additionally, you can also add ankle weights.",
@@ -418,7 +418,7 @@ const exercises = [
     name: "Natural Glute Ham Raise",
     type: "strength",
     muscle: "hamstrings",
-    equipment: "body_only",
+    equipment: "body only",
     difficulty: "beginner",
     instructions:
       "Using the leg pad of a lat pulldown machine or a preacher bench, position yourself so that your ankles are under the pads, knees on the seat, and you are facing away from the machine. You should be upright and maintaining good posture. This will be your starting position. Lower yourself under control until your knees are almost completely straight. Remaining in control, raise yourself back up to the starting position. If you are unable to complete a rep, use a band, a partner, or push off of a box to aid in completing a repetition.",
@@ -435,8 +435,8 @@ const exercises = [
   {
     name: "Back extension",
     type: "strength",
-    muscle: "lower_back",
-    equipment: "body_only",
+    muscle: "lower back",
+    equipment: "body only",
     difficulty: "advanced",
     instructions:
       "Lie face down on a hyperextension bench, tucking your ankles securely under the footpads. Adjust the upper pad if possible so your upper thighs lie flat across the wide pad, leaving enough room for you to bend at the waist without any restriction. With your body straight, cross your arms in front of you (my preference) or behind your head. This will be your starting position. Tip: You can also hold a weight plate for extra resistance in front of you under your crossed arms. Start bending forward slowly at the waist as far as you can while keeping your back flat. Inhale as you perform this movement. Keep moving forward until you feel a nice stretch on the hamstrings and you can no longer keep going without a rounding of the back. Tip: Never round the back as you perform this exercise. Also, some people can go farther than others. The key thing is that you go as far as your body allows you to without rounding the back. Slowly raise your torso back to the initial position as you inhale. Tip: Avoid the temptation to arch your back past a straight line. Also, do not swing the torso at any time in order to protect the back from injury. Repeat for the recommended amount of repetitions.  Variations: This exercise can also be performed without a hyperextension bench, but in this case you will need a spotter. Also, a similar exercise to this one is the good morning and the stiff-legged deadlift.",
@@ -444,8 +444,8 @@ const exercises = [
   {
     name: "Hyperextensions With No Hyperextension Bench",
     type: "strength",
-    muscle: "lower_back",
-    equipment: "body_only",
+    muscle: "lower back",
+    equipment: "body only",
     difficulty: "beginner",
     instructions:
       "With someone holding down your legs, slide yourself down to the edge a flat bench until your hips hang off the end of the bench. Tip: Your entire upper body should be hanging down towards the floor. Also, you will be in the same position as if you were on a hyperextension bench but the range of motion will be shorter due to the height of the flat bench vs. that of the hyperextension bench. With your body straight, cross your arms in front of you (my preference) or behind your head. This will be your starting position. Tip: You can also hold a weight plate for extra resistance in front of you under your crossed arms. Start bending forward slowly at the waist as far as you can while keeping your back flat. Inhale as you perform this movement. Keep moving forward until you almost touch the floor or you feel a nice stretch on the hamstrings (whichever comes first). Tip: Never round the back as you perform this exercise. Slowly raise your torso back to the initial position as you exhale. Tip: Avoid the temptation to arch your back past a straight line. Also, do not swing the torso at any time in order to protect the back from injury. Repeat for the recommended amount of repetitions.  Variations: This exercise can also be performed using a hyperextension bench. Also, a similar exercise to this one is the good morning and the stiff-legged deadlift.",
@@ -453,8 +453,8 @@ const exercises = [
   {
     name: "Superman",
     type: "stretching",
-    muscle: "lower_back",
-    equipment: "body_only",
+    muscle: "lower back",
+    equipment: "body only",
     difficulty: "intermediate",
     instructions:
       "To begin, lie straight and face down on the floor or exercise mat. Your arms should be fully extended in front of you. This is the starting position. Simultaneously raise your arms, legs, and chest off of the floor and hold this contraction for 2 seconds. Tip: Squeeze your lower back to get the best results from this exercise. Remember to exhale during this movement. Note: When holding the contracted position, you should look like superman when he is flying. Slowly begin to lower your arms, legs and chest back down to the starting position while inhaling. Repeat for the recommended amount of repetitions prescribed in your program.  Variations: You can also perform this exercise using one arm and leg at a time. Simply elevating your left leg, arm and side of your chest and do the same with the right side.",
@@ -462,7 +462,7 @@ const exercises = [
   {
     name: "T-Bar Row with Handle",
     type: "strength",
-    muscle: "middle_back",
+    muscle: "middle back",
     equipment: "other",
     difficulty: "intermediate",
     instructions:
@@ -471,7 +471,7 @@ const exercises = [
   {
     name: "Reverse-grip bent-over row",
     type: "strength",
-    muscle: "middle_back",
+    muscle: "middle back",
     equipment: "barbell",
     difficulty: "intermediate",
     instructions:
@@ -480,7 +480,7 @@ const exercises = [
   {
     name: "One-Arm Dumbbell Row",
     type: "strength",
-    muscle: "middle_back",
+    muscle: "middle back",
     equipment: "dumbbell",
     difficulty: "advanced",
     instructions:
@@ -489,7 +489,7 @@ const exercises = [
   {
     name: "One-Arm Long Bar Row",
     type: "strength",
-    muscle: "middle_back",
+    muscle: "middle back",
     equipment: "barbell",
     difficulty: "intermediate",
     instructions:
@@ -498,7 +498,7 @@ const exercises = [
   {
     name: "T-Bar Row",
     type: "strength",
-    muscle: "middle_back",
+    muscle: "middle back",
     equipment: "other",
     difficulty: "intermediate",
     instructions:
@@ -507,7 +507,7 @@ const exercises = [
   {
     name: "Bent Over Two-Arm Long Bar Row",
     type: "strength",
-    muscle: "middle_back",
+    muscle: "middle back",
     equipment: "barbell",
     difficulty: "intermediate",
     instructions:
@@ -516,7 +516,7 @@ const exercises = [
   {
     name: "Alternating sit-through with crunch",
     type: "strength",
-    muscle: "middle_back",
+    muscle: "middle back",
     equipment: "other",
     difficulty: "intermediate",
     instructions:
@@ -525,7 +525,7 @@ const exercises = [
   {
     name: "Rower",
     type: "cardio",
-    muscle: "middle_back",
+    muscle: "middle back",
     equipment: "machine",
     difficulty: "intermediate",
     instructions:
@@ -534,7 +534,7 @@ const exercises = [
   {
     name: "Seated Cable Rows",
     type: "strength",
-    muscle: "middle_back",
+    muscle: "middle back",
     equipment: "cable",
     difficulty: "intermediate",
     instructions:
@@ -543,7 +543,7 @@ const exercises = [
   {
     name: "Incline dumbbell row",
     type: "strength",
-    muscle: "middle_back",
+    muscle: "middle back",
     equipment: "dumbbell",
     difficulty: "intermediate",
     instructions:
@@ -571,7 +571,7 @@ const exercises = [
     name: "Jumping rope",
     type: "cardio",
     muscle: "quadriceps",
-    equipment: "body_only",
+    equipment: "body only",
     difficulty: "intermediate",
     instructions:
       "Hold an end of the rope in each hand. Position the rope behind you on the ground. Raise your arms up and turn the rope over your head bringing it down in front of you. When it reaches the ground, jump over it. Find a good turning pace that can be maintained. Different speeds and techniques can be used to introduce variation. Rope jumping is exciting, challenges your coordination, and requires a lot of energy. A 150 lb person will burn about 350 calories jumping rope for 30 minutes, compared to over 450 calories running.",
@@ -670,7 +670,7 @@ const exercises = [
     name: "Triceps dip",
     type: "strength",
     muscle: "triceps",
-    equipment: "body_only",
+    equipment: "body only",
     difficulty: "intermediate",
     instructions:
       "To get into the starting position, hold your body at arm's length with your arms nearly locked above the bars. Now, inhale and slowly lower yourself downward. Your torso should remain upright and your elbows should stay close to your body. This helps to better focus on tricep involvement. Lower yourself until there is a 90 degree angle formed between the upper arm and forearm. Then, exhale and push your torso back up using your triceps to bring your body back to the starting position. Repeat the movement for the prescribed amount of repetitions.  Variations: If you are new at this exercise and do not have the strength to perform it, use a dip assist machine if available. These machines use weight to help you push your bodyweight. Otherwise, a spotter holding your legs can help. More advanced lifters can add weight to the exercise by using a weight belt that allows the addition of weighted plates.",
@@ -679,7 +679,7 @@ const exercises = [
     name: "Decline EZ-bar skullcrusher",
     type: "strength",
     muscle: "triceps",
-    equipment: "e-z_curl_bar",
+    equipment: "e-z curl bar",
     difficulty: "advanced",
     instructions:
       "Secure your legs at the end of the decline bench and slowly lay down on the bench. Using a close grip (a grip that is slightly less than shoulder width), lift the EZ bar from the rack and hold it straight over you with your arms locked and elbows in. The arms should be perpendicular to the floor. This will be your starting position. Tip: In order to protect your rotator cuff, it is best if you have a spotter help you lift the barbell off the rack. As you breathe in and you keep the upper arms stationary, bring the bar down slowly by moving your forearms in a semicircular motion towards you until you feel the bar slightly touch your forehead. Breathe in as you perform this portion of the movement. Lift the bar back to the starting position by contracting the triceps and exhaling. Repeat until the recommended amount of repetitions is performed.  Variations: You can use a straight bar or dumbbells to perform this movement. You can also perform it on a flat bench as well.",
@@ -697,7 +697,7 @@ const exercises = [
     name: "Weighted bench dip",
     type: "strength",
     muscle: "triceps",
-    equipment: "body_only",
+    equipment: "body only",
     difficulty: "intermediate",
     instructions:
       "For this exercise you will need to place a bench behind your back and another one in front of you. With the benches perpendicular to your body, hold on to one bench on its edge with the hands close to your body, separated at shoulder width. Your arms should be fully extended. The legs will be extended forward on top of the other bench. Your legs should be parallel to the floor while your torso is to be perpendicular to the floor. Have your partner place the dumbbell on your lap. Note: This exercise is best performed with a partner as placing the weight on your lap can be challenging and cause injury without assistance. This will be your starting position. Slowly lower your body as you inhale by bending at the elbows until you lower yourself far enough to where there is an angle slightly smaller than 90 degrees between the upper arm and the forearm. Tip: Keep the elbows as close as possible throughout the movement. Forearms should always be pointing down. Using your triceps to bring your torso up again, lift yourself back to the starting position while exhaling. Repeat for the recommended amount of repetitions.  Caution: By placing your legs on top of another flat bench in front of you, the exercise becomes more challenging. It is best to attempt this exercise without any weights at first in order to get used to the movements required for good form. If that variation also becomes easy, then you can have a partner place plates on top of your lap. Make sure that in this case the partner ensures that the weights stay there throughout the movement.",
@@ -706,7 +706,7 @@ const exercises = [
     name: "EZ-Bar Skullcrusher",
     type: "strength",
     muscle: "triceps",
-    equipment: "e-z_curl_bar",
+    equipment: "e-z curl bar",
     difficulty: "intermediate",
     instructions:
       "Using a close grip, lift the EZ bar and hold it with your elbows in as you lie on the bench. Your arms should be perpendicular to the floor. This will be your starting position. Keeping the upper arms stationary, lower the bar by allowing the elbows to flex. Inhale as you perform this portion of the movement. Pause once the bar is directly above the forehead. Lift the bar back to the starting position by extending the elbow and exhaling. Repeat.",
@@ -724,7 +724,7 @@ const exercises = [
     name: "Push-Ups - Close Triceps Position",
     type: "strength",
     muscle: "triceps",
-    equipment: "body_only",
+    equipment: "body only",
     difficulty: "intermediate",
     instructions:
       "Lie on the floor face down and place your hands closer than shoulder width for a close hand position. Make sure that you are holding your torso up at arms' length. Lower yourself until your chest almost touches the floor as you inhale. Using your triceps and some of your pectoral muscles, press your upper body back up to the starting position and squeeze your chest. Breathe out as you perform this step. After a second pause at the contracted position, repeat the movement for the prescribed amount of repetitions.  Variations:  If you are new at this exercise and do not have the strength to perform it, you can either bend your legs at the knees to take off resistance or perform the exercise against the wall instead of the floor. For the most advanced lifters, you can place your feet at a high surface such as a bench in order to increase the resistance.  See Also: Push-Up",
@@ -778,7 +778,7 @@ const exercises = [
     name: "Standing Hamstring Stretch",
     type: "stretching",
     muscle: "hamstrings",
-    equipment: "body_only",
+    equipment: "body only",
     difficulty: "beginner",
     instructions:
       "Stand tall with your feet hip-width apart, knees slightly bent, arms by your sides. Exhale as you bend forward at the hips, lowering your head toward the floor while keeping your head, neck, and shoulders relaxed. Wrap your arms around backs of your legs and hold anywhere from 45 seconds to 2 minutes. Bend your knees and roll up when you're done.",
@@ -787,7 +787,7 @@ const exercises = [
     name: "Tricep Stretch",
     type: "stretching",
     muscle: "triceps",
-    equipment: "body_only",
+    equipment: "body only",
     difficulty: "beginner",
     instructions:
       "The triceps stretch—one of the most popular upper-body stretches. It loosens up the muscles on the back of your upper arms, making it great to do after a chest or shoulders workout. Kneel, sit, or stand tall with feet hip-width apart, arms extended overhead. Bend your right elbow and reach your right hand to touch the top middle of your back. Reach your left hand overhead and grasp just below your right elbow. Gently pull your right elbow down and toward your head. Switch arms and repeat.",
@@ -796,7 +796,7 @@ const exercises = [
     name: "Butterfly Stretch",
     type: "stretching",
     muscle: "glutes",
-    equipment: "body_only",
+    equipment: "body only",
     difficulty: "beginner",
     instructions:
       "Sit tall on the floor with the soles of your feet together, knees bent out to sides. Hold onto your ankles or feet, engage your abs, and slowly lower your body toward your feet as far as you can while pressing your knees toward the floor. If you're too tight to bend over, simply press your knees down. Hold this stretch for 30 seconds to 2 minutes.",
@@ -805,7 +805,7 @@ const exercises = [
     name: "Lunging Hip Flexor",
     type: "stretching",
     muscle: "quadriceps",
-    equipment: "body_only",
+    equipment: "body only",
     difficulty: "beginner",
     instructions:
       "Kneel on your left knee. Place your right foot flat on the floor in front of you, knee bent. Lean forward, stretching your left hip toward the floor. Squeeze your butt; this will allow you to stretch your hip flexor even more. Hold for 30 seconds to 2 minutes. Switch sides and repeat.",
