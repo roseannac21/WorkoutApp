@@ -133,6 +133,8 @@ const SignUp = ({ navigation }) => {
           title="Submit"
           onPress={() => {
             postUser(newUser, newPassword, newAvatar)
+            alert('Thank you for signing up!')
+            navigation.navigate('LogIn')
           }}
           style={{
             backgroundColor: '#87CEEB',

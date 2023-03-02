@@ -107,7 +107,6 @@ const Workout = ({ navigation, route }) => {
           padding: 5,
           borderRadius: 10,
           margin: 15,
-          // height: 50,
         }}
         onPress={() => {
           const postWorkoutBody = [];
