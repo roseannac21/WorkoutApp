@@ -42,6 +42,6 @@ Link to the hosted back-end: [https://workout-app-ix1o.onrender.com](). The avai
 
 To have a go with the app, start by cloning the repo and install the Expo Go app onto your smartphone.
 
-- Run `npm install` to install all the necessary dependencies.
+- Go into the back-end and front-end directories and run `npm install` in each, in order to install all the necessary dependencies.
 - From within the front-end directory, run `npx expo start`. Scan the QR code, which should then redirect you to Expo Go app, opening up G.Y.M.
 - Have fun!
